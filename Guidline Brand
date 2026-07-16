@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>DRM Design — Content Guideline rút gọn</title>
+<style>
+  :root{
+    --bg:#f4f3ee;
+    --card:#ffffff;
+    --line:#e4e2d8;
+    --ink:#1c1c1a;
+    --sub:#6f6e68;
+    --accent:#1c1c1a;
+    --pill:#eceae1;
+    --brand:#e2530f;
+    --brand-dark:#b8291c;
+    --brand-bg:#fdf0e5;
+    --tiêu-đề:#185fa5;
+    --noidung:#3b6d11;
+    --cta:var(--brand);
+    --slogan:var(--brand-dark);
+    --hashtag:#0f6e56;
+    --dạng:#534ab7;
+    --baimau:#0c447c;
+    --duyet:var(--brand-dark);
+    --lichdang:var(--brand);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: 'SVN-Gilroy', 'Gilroy', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  a{color:var(--brand-dark);text-decoration:underline;}
+  a:hover{color:var(--brand);}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 80px;}
+  header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:22px;
+    flex-wrap:wrap;gap:14px;
+  }
+  .brand{font-size:13px;letter-spacing:.08em;color:var(--sub);text-transform:uppercase;margin:0 0 6px;}
+  h1{font-size:24px;margin:0;font-weight:600;}
+  h1 span{color:var(--sub);font-weight:400;}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{background:var(--pill);border-radius:20px;padding:6px 12px;font-size:12.5px;color:var(--sub);white-space:nowrap;}
+  nav{display:flex;gap:6px;flex-wrap:wrap;}
+  nav button{
+    border:1px solid var(--line);background:var(--card);color:var(--sub);
+    padding:9px 16px;border-radius:8px;font-size:13.5px;cursor:pointer;
+    font-weight:500;
+  }
+  nav button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  #platformnav{margin-bottom:14px;}
+  #platformnav button{font-size:15px;font-weight:700;padding:12px 26px;border-radius:10px;}
+  #platformnav button.active{background:var(--brand);border-color:var(--brand);}
+  #catnav-fanpage,#catnav-tiktok,#catnav-website{margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line);}
+  .catnav{display:none;flex-wrap:wrap;gap:6px;}
+  .catnav.active{display:flex;}
+  .start-card{background:var(--card);border:2px solid var(--brand);border-radius:14px;padding:22px 24px;margin-bottom:16px;}
+  .start-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:700px){.start-grid{grid-template-columns:1fr;}}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:12.5px;margin-right:8px;flex:none;}
+  .step-row{display:flex;align-items:flex-start;margin-bottom:10px;}
+  .pri{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:10px;margin-right:7px;white-space:nowrap;}
+  .pri-must{background:#fbdedb;color:var(--brand-dark);}
+  .pri-should{background:#fdecc8;color:#8a5a00;}
+  .pri-nice{background:#e7e6e2;color:#5b5a54;}
+  .pending-card{background:#fffdf5;border:1px solid #e8d9a8;border-radius:12px;padding:16px 20px;margin-top:18px;}
+  .pending-card h3{color:#8a5a00;}
+  .pending-card ol{margin:0;padding-left:20px;font-size:13px;color:#6b5a2a;}
+  .pending-card li{margin-bottom:8px;}
+  .note-ref{color:#a17a1f;font-weight:700;cursor:default;}
+  section{display:none;}
+  section.active{display:block;animation:fade .15s ease;}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .sechead{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+  .dot{width:10px;height:10px;border-radius:50%;flex:none;}
+  .sechead h2{font-size:19px;margin:0;font-weight:600;}
+  .sechead p{margin:2px 0 0;color:var(--sub);font-size:13.5px;}
+  .tieude-badge{
+    display:inline-block;background:var(--brand);color:#fff;
+    font-weight:800;text-transform:uppercase;font-size:11px;letter-spacing:.5px;
+    padding:4px 12px;border-radius:6px;white-space:nowrap;
+  }
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 20px;margin-bottom:14px;
+  }
+  .card h3{font-size:14.5px;margin:0 0 8px;font-weight:700;text-transform:none;color:#1c1c1a;letter-spacing:normal;}
+  .card .label{
+    display:block;font-size:14.5px;color:#1c1c1a;text-transform:none;
+    font-weight:700;letter-spacing:normal;margin-bottom:8px;
+  }
+  .card p{margin:0 0 8px;font-size:14px;}
+  .card p:last-child{margin-bottom:0;}
+  .card ul{margin:0 0 8px;padding-left:18px;font-size:14px;}
+  .card ul:last-child{margin-bottom:0;}
+  .card li{margin-bottom:4px;}
+  .formula{
+    background:var(--brand-bg);border:1px dashed var(--brand);border-radius:8px;
+    padding:12px 14px;font-size:13.5px;margin:8px 0;
+  }
+  .formula b{color:var(--brand-dark);}
+  .example{
+    background:#f7f6f0;border-left:3px solid var(--line);border-radius:0 6px 6px 0;
+    padding:8px 12px;font-size:13.5px;color:var(--sub);margin-top:6px;
+  }
+  .example b{color:var(--ink);}
+  .assume{
+    background:#fff8e8;border:1px dashed #d9a441;border-radius:8px;
+    padding:10px 14px;font-size:12.5px;color:#7a5b12;margin-top:10px;
+  }
+  .assume b{color:#8a5a00;}
+  .illus-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+  .illus-row figure{margin:0;text-align:center;min-width:0;max-width:100%;}
+  .illus-row img{max-width:100%;max-height:260px;height:auto;width:auto;border-radius:8px;border:1px solid var(--line);display:block;}
+  .grid2 > div{min-width:0;}
+  .illus-row figcaption{font-size:11.5px;color:var(--sub);margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  @media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr;}}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{color:var(--sub);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;}
+  tr:last-child td{border-bottom:none;}
+  .ok{color:#3b6d11;font-weight:600;}
+  #noidung-fanpage .ok, #noidung-tiktok .ok, #noidung-website .ok{color:var(--tiêu-đề);}
+  .no{color:var(--brand-dark);font-weight:600;}
+  .hl{background:var(--brand-bg);color:var(--brand-dark);font-weight:700;padding:2px 7px;border-radius:4px;}
+  .keyword-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;}
+  @media(max-width:700px){.keyword-grid{grid-template-columns:1fr;}}
+  .kw{font-size:13.5px;padding:6px 0;border-bottom:1px dotted var(--line);}
+  .kw b{color:var(--brand-dark);}
+  .badge{display:inline-block;background:var(--pill);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;margin-right:6px;}
+  .pillar-hl{color:var(--brand-dark) !important;font-weight:800 !important;text-transform:uppercase !important;letter-spacing:.03em;}
+  .quote{
+    font-size:15.5px;font-style:italic;color:var(--ink);border-left:3px solid var(--slogan);
+    padding:10px 16px;background:var(--brand-bg);border-radius:0 8px 8px 0;
+  }
+  .contact{font-size:13px;color:var(--sub);margin-top:10px;}
+  .contact b{color:var(--ink);}
+  .pillar{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+  .pillar-head{background:#f2f1ea;padding:12px 18px;font-weight:600;font-size:14.5px;color:var(--brand-dark);}
+  .angle{padding:12px 18px;border-top:1px solid var(--line);}
+  .angle b{font-size:13.5px;}
+  .angle .ex{color:var(--sub);font-size:13px;margin-top:3px;}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--sub);margin-bottom:6px;}
+  .flow .step{background:var(--brand);border-radius:6px;padding:5px 10px;color:#fff;font-weight:700;}
+  .flow .arrow{color:var(--sub);}
+  .grouphead td{background:#f2f1ea;font-weight:700;font-size:12.5px;letter-spacing:.03em;color:var(--ink);padding:8px 10px;}
+  .vung-badge{display:inline-block;padding:3px 11px;border-radius:20px;font-weight:700;font-size:12.5px;}
+  .vung-a{background:#e3f1d9;color:#2f5c0e;}
+  .vung-b{background:#fdecc8;color:#8a5a00;}
+  .vung-c{background:#fbdedb;color:var(--brand-dark);}
+  tr.row-a td{background:#f8fbf5;}
+  tr.row-b td{background:#fffaf0;}
+  tr.row-c td{background:#fdf3f2;}
+  tr.grouphead td{background:#f2f1ea !important;}
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <p class="brand">DRM Design</p>
+      <h1>Content Guideline <span>— bản rút gọn cho nhân sự</span></h1>
+    </div>
+    <div class="tags">
+      <span class="tag">Fanpage · TikTok · Website</span>
+      <span class="tag">9 phần (Fanpage/TikTok) · 7 phần (Website)</span>
+    </div>
+  </header>
+
+  <nav id="platformnav">
+    <button data-platform="start" class="active">🚀 Bắt đầu</button>
+    <button data-platform="fanpage">Fanpage</button>
+    <button data-platform="tiktok">TikTok</button>
+    <button data-platform="website">Website</button>
+  </nav>
+  <nav id="catnav-fanpage" class="catnav">
+    <button data-cat="noidung" class="active">1. Tiêu chuẩn nội dung</button>
+    <button data-cat="tieude">2. Tiêu đề</button>
+    <button data-cat="cta">3. CTA</button>
+    <button data-cat="slogan">4. Slogan</button>
+    <button data-cat="hashtag">5. Hashtag / SEO</button>
+    <button data-cat="dangnd">6. Các dạng nội dung</button>
+    <button data-cat="baimau">7. Bài mẫu</button>
+    <button data-cat="duyet">8. Quy trình duyệt bài</button>
+    <button data-cat="lichdang">9. Lịch đăng bài</button>
+  </nav>
+  <nav id="catnav-tiktok" class="catnav">
+    <button data-cat="noidung" class="active">1. Tiêu chuẩn nội dung</button>
+    <button data-cat="tieude">2. Tiêu đề</button>
+    <button data-cat="cta">3. CTA</button>
+    <button data-cat="slogan">4. Slogan</button>
+    <button data-cat="hashtag">5. Hashtag / SEO</button>
+    <button data-cat="dangnd">6. Các dạng nội dung</button>
+    <button data-cat="baimau">7. Bài mẫu</button>
+    <button data-cat="duyet">8. Quy trình duyệt bài</button>
+    <button data-cat="lichdang">9. Lịch đăng bài</button>
+  </nav>
+  <nav id="catnav-website" class="catnav">
+    <button data-cat="noidung" class="active">1. Tiêu chuẩn nội dung &amp; SEO</button>
+    <button data-cat="cta">2. CTA &amp; Slogan</button>
+    <button data-cat="hashtag">3. Hashtag / SEO</button>
+    <button data-cat="dangnd">4. Các dạng nội dung</button>
+    <button data-cat="baimau">5. Bài mẫu</button>
+    <button data-cat="duyet">6. Quy trình duyệt bài</button>
+    <button data-cat="lichdang">7. Lịch đăng bài</button>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- ============================================================ -->
+  <!-- ========================== BẮT ĐẦU =========================== -->
+  <!-- ============================================================ -->
+
+  <section data-platform="start" data-cat="start" id="start-page" class="active">
+    <div class="sechead"><span class="dot" style="background:var(--brand)"></span>
+      <div><h2>Bắt đầu từ đâu?</h2><p>Tóm tắt 5 phút cho nhân sự mới — đọc phần này trước, chi tiết đầy đủ nằm ở 3 tab Fanpage / TikTok / Website phía trên</p></div>
+    </div>
+
+    <div class="start-card">
+      <h3 style="margin-top:0;">5 bước trước khi viết/đăng 1 bài</h3>
+      <div class="step-row"><span class="step-num">1</span><div><b>Xác định Pillar &amp; Idea</b> — bài thuộc nhóm nào trong 4 pillar (Thiết kế/Công trình/Kinh doanh/Thương hiệu)? Vấn đề, insight khách hàng là gì? <span style="color:var(--sub);">(xem tab 6. Các dạng nội dung)</span></div></div>
+      <div class="step-row"><span class="step-num">2</span><div><b>Viết theo công thức chuẩn</b> — Tiêu đề (Tên + Giải pháp + Lợi ích, ≤15 từ) → Mô tả → CTA → Slogan → Liên hệ/Hashtag. <span style="color:var(--sub);">(xem tab 1 &amp; 2)</span></div></div>
+      <div class="step-row"><span class="step-num">3</span><div><b>Tự kiểm tra Vùng A/B/C</b> — việc này mình tự quyết được, hay cần báo cáo, hay phải xin ý kiến Leader MKT trước? <span style="color:var(--sub);">(xem tab 8. Quy trình duyệt bài)</span></div></div>
+      <div class="step-row"><span class="step-num">4</span><div><b>Đối chiếu checklist nhanh</b> — không dùng "nhé/nha", đúng font/màu thương hiệu, đúng giới hạn ký tự/từ theo nền tảng.</div></div>
+      <div class="step-row"><span class="step-num">5</span><div><b>Đăng đúng lịch</b> — kiểm tra khung giờ chuẩn của từng nền tảng. <span style="color:var(--sub);">(xem tab 9. Lịch đăng bài)</span></div></div>
+    </div>
+
+    <div class="start-grid">
+      <div class="card">
+        <h3>Công thức tiêu đề (dùng chung)</h3>
+        <div class="formula" style="margin:0;">
+          <b>Tên công trình/thương hiệu</b> + <b>Giải pháp</b> + <b>Lợi ích khách hàng</b>
+        </div>
+        <p style="font-size:13px;color:var(--sub);margin-top:8px;margin-bottom:0;">Tối đa 15 từ. TikTok ưu tiên rút ngắn hơn (6–10 từ).</p>
+      </div>
+      <div class="card">
+        <h3>Slogan chuẩn thương hiệu</h3>
+        <div class="quote" style="margin:0;">"DRM Design — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả"</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Mẫu CTA chuẩn (áp dụng mọi bài/video)</h3>
+      <div class="quote" style="border-color:var(--cta);">
+        "Bạn đang tìm kiếm đơn vị thiết kế và thi công <span style="color:var(--brand-dark);font-weight:700;">[quán cafe / nhà hàng / shop / spa]</span> + <span style="color:var(--brand-dark);font-weight:700;">[giải pháp/nỗi đau khách hàng đang có ở phần tiêu đề]</span>. Hãy liên hệ DRM Design để được hỗ trợ tư vấn."
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>3 vùng quyết định — nhớ nhanh</h3>
+      <div class="grid3">
+        <div class="example" style="border-left-color:#2f5c0e;background:#e3f1d9;"><span class="vung-badge vung-a">A</span><br><br>Tự quyết — chỉ ghi báo cáo tuần</div>
+        <div class="example" style="border-left-color:#8a5a00;background:#fdecc8;"><span class="vung-badge vung-b">B</span><br><br>Tự quyết — báo cáo trong 24h</div>
+        <div class="example" style="border-left-color:var(--brand-dark);background:#fbdedb;"><span class="vung-badge vung-c">C</span><br><br>Phải xin ý kiến Leader MKT trước</div>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Không chắc bài viết thuộc vùng nào? Mặc định coi là <b>Vùng C</b> và hỏi Leader MKT — an toàn hơn tự đoán.</p>
+    </div>
+
+    <div class="card">
+      <h3>Thông tin liên hệ nhanh</h3>
+      <div class="contact">
+        <p><b>DRM Design</b> — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả</p>
+        <p>Hotline / Zalo: <b>0966 776 375</b></p>
+        <p>Văn phòng đại diện: <b>07 Mỹ An 9, Ngũ Hành Sơn, TP Đà Nẵng</b></p>
+        <p>Website: <b>drmdesign.vn</b></p>
+      </div>
+    </div>
+
+    <div class="card" style="border:1px dashed var(--line);background:transparent;">
+      <p style="margin:0;font-size:13px;color:var(--sub);">💡 Đây chỉ là bản tóm tắt. Mỗi nền tảng (Fanpage/TikTok/Website) có tiêu chuẩn chi tiết riêng — bấm vào tab tương ứng phía trên để xem đầy đủ font, màu, hiệu ứng, ví dụ thực tế và checklist SEO.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ========================= FANPAGE =========================== -->
+  <!-- ============================================================ -->
+
+  <section data-platform="fanpage" data-cat="tieude" id="tieude-fanpage">
+    <div class="sechead" style="flex-direction:column;align-items:flex-start;gap:6px;">
+      <div><h2>Tiêu chuẩn về tiêu đề — Fanpage</h2><p>Áp dụng cho tiêu đề bài viết / video đăng trên Fanpage Facebook</p></div>
+      <span class="dot" style="background:var(--tiêu-đề)"></span>
+    </div>
+    <div class="card">
+      <span class="label" style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a !important;letter-spacing:normal;display:block;">Công thức chuẩn</span>
+      <div class="formula">
+        <b>Tên công trình / thương hiệu</b> + <b>Giải pháp giải quyết vấn đề</b> + <b>Lợi ích cho khách hàng mục tiêu</b>
+      </div>
+      <p>Số từ tối đa: <b>15 từ</b>. Ưu tiên dùng từ ngữ khớp với insight khách hàng (xem bảng từ khóa bên dưới) để tăng tỉ lệ dừng lại đọc.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a;letter-spacing:normal;">Phân định các đoạn nội dung</h3>
+      <p>Các phần:</p>
+      <ul>
+        <li><b>"Tiêu đề"</b></li>
+        <li><b>"Mô tả nội dung, thiết kế"</b></li>
+        <li><b>"CTA"</b></li>
+        <li><b>"THÔNG TIN DỰ ÁN"</b></li>
+      </ul>
+      <p>Cần được tách biệt rõ ràng bằng việc xuống hàng, không viết dồn thành một đoạn.</p>
+    </div>
+    <div class="card">
+      <h3>Ví dụ theo Pillar</h3>
+      <div class="grid2">
+        <div>
+          <p><span class="pillar-hl">Pillar Công trình</span> <span class="badge" style="color:var(--sub)">thiết kế · thi công · hiện trạng</span></p>
+          <p style="font-size:13px;">Font thường – in hoa (không cách điệu)</p>
+          <div class="example">Ví dụ 01: <b>"KHÔNG GIAN CAFE INDUSTRIAL - PHONG CÁCH TỐI GIẢN, CÔNG NĂNG TỐI ĐA CHO VIỆC HỌC TẬP VÀ LÀM VIỆC"</b></div>
+        </div>
+        <div>
+          <p><span class="pillar-hl">Pillar còn lại</span> <span class="badge" style="color:var(--sub)">kiến thức · brand · sự kiện</span></p>
+          <p style="font-size:13px;">Font chữ hiệu ứng - có chân - đơn giản</p>
+          <div class="example">Ví dụ 02: <b>[𝟑 𝐍𝐠𝐮𝐲𝐞̂𝐧 𝐓𝐚̆́𝐜 𝐕𝐚̀𝐧𝐠 𝐊𝐡𝐢 𝐂𝐡𝐨̣𝐧 𝐕𝐚̣̂𝐭 𝐋𝐢𝐞̣̂𝐮 𝐓𝐡𝐢 𝐂𝐨̂𝐧𝐠 𝐂𝐡𝐨 𝐐𝐮𝐚́𝐧 𝐂𝐚̀ 𝐏𝐡𝐞̂]</b><br>Công cụ tạo chữ hiệu ứng: <a href="https://quantrimang.com/cong-nghe/cach-viet-chu-hieu-ung-doc-dao-ngo-nghinh-len-status-facebook-124163" target="_blank" rel="noopener">quantrimang.com</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="label" style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a !important;letter-spacing:normal;display:block;">Phụ đề (subtitle)</span>
+      <div class="grid2">
+        <div>
+          <p>Pillar Công trình: <b>viết thường</b></p>
+        </div>
+        <div>
+          <p>Pillar còn lại: <b>viết thường – in đậm – có chân – đơn giản</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a;letter-spacing:normal;">Từ khóa hay dùng cho tiêu đề (khớp insight)</h3>
+      <div class="keyword-grid">
+        <div class="kw"><b>Bí quyết</b> — gợi mở tò mò, hướng dẫn</div>
+        <div class="kw"><b>Chiến lược</b> — nghe bài bản, chuyên nghiệp</div>
+        <div class="kw"><b>Đúng cách</b> — giảm nỗi lo "làm sai"</div>
+        <div class="kw"><b>Khác biệt</b> — đánh vào mong muốn nổi bật</div>
+        <div class="kw"><b>Tối ưu</b> — giải quyết lo lắng chi phí</div>
+        <div class="kw"><b>Đơn giản</b> — giảm cảm giác phức tạp</div>
+        <div class="kw"><b>Câu chuyện</b> — gắn với kể chuyện thương hiệu</div>
+        <div class="kw"><b>Dấu ấn</b> — khẳng định giá trị lưu lại tâm trí</div>
+        <div class="kw"><b>Trải nghiệm</b> — gắn cảm xúc khách quay lại</div>
+        <div class="kw"><b>Khởi đầu</b> — giải quyết "không biết bắt đầu từ đâu"</div>
+        <div class="kw"><b>Đúng chuẩn</b> — mang tính chắc chắn, yên tâm</div>
+        <div class="kw"><b>Đột phá</b> — gây tò mò, khác biệt mạnh</div>
+        <div class="kw"><b>Thực chiến</b> — tăng tin cậy, không lý thuyết</div>
+        <div class="kw"><b>Tinh gọn / Trọn gói</b> — tiết kiệm, gọn nhẹ</div>
+        <div class="kw"><b>Bản sắc</b> — gắn trực tiếp thương hiệu riêng</div>
+        <div class="kw"><b>Không tốn kém</b> — đánh thẳng vào insight chi phí</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="noidung" id="noidung-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--noidung)"></span>
+      <div><h2>Tiêu chuẩn về nội dung — Fanpage</h2><p>Giọng nói, ngữ pháp, giới hạn ký tự và những điều cần tránh</p></div>
+    </div>
+    <div class="card">
+      <h3>Cấu trúc tiêu chuẩn của 1 bài viết/video</h3>
+      <div class="flow">
+        <span class="step">1. Tiêu đề</span><span class="arrow">→</span>
+        <span class="step">2. Mô tả nội dung, thiết kế</span><span class="arrow">→</span>
+        <span class="step">3. CTA</span><span class="arrow">→</span>
+        <span class="step">4. Slogan</span><span class="arrow">→</span>
+        <span class="step">5. Liên hệ + Hashtag</span>
+      </div>
+      <table>
+        <tr><th>Phần</th><th>Nội dung chuẩn</th></tr>
+        <tr><td>1. Tiêu đề</td><td>Tên công trình/thương hiệu + Giải pháp + Lợi ích, tối đa 15 từ (chi tiết ở tab 2. Tiêu đề)</td></tr>
+        <tr><td>2. Mô tả nội dung, thiết kế</td><td>1–2 đoạn, giọng chuyên nghiệp – thân thiện – sáng tạo. Nếu là bài công trình, thêm khối <b>THÔNG TIN DỰ ÁN</b> (Địa điểm – Diện tích – Thể loại công trình – Đơn vị thiết kế/thi công)</td></tr>
+        <tr><td>3. CTA</td><td>Câu kêu gọi hành động chuẩn, có phần thể loại công trình và giải pháp/nỗi đau cần thay thế (tab 3. CTA)</td></tr>
+        <tr><td>4. Slogan</td><td>Đặt ngay sau CTA, giữ nguyên hoặc linh hoạt theo chiến dịch (tab 4. Slogan)</td></tr>
+        <tr><td>5. Liên hệ + Hashtag</td><td>Hotline, địa chỉ, website + #drmdesign + từ khóa chính/phụ (tab 5. Hashtag/SEO)</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:13px;color:var(--sub);">Nguyên tắc: mỗi phần tách biệt rõ ràng bằng xuống hàng, không viết dồn thành 1 đoạn.</p>
+    </div>
+    <div class="card">
+      <h3>Giọng nói &amp; tông điệu</h3>
+      <p><span class="hl">Chuyên nghiệp – thân thiện – sáng tạo.</span> Linh hoạt theo hành trình khách hàng: giới thiệu sản phẩm cần tự tin nhiệt tình, hỗ trợ khách hàng cần nhẹ nhàng đồng cảm.</p>
+    </div>
+    <div class="card">
+      <h3>Quy chuẩn ngôn ngữ chung</h3>
+      <table>
+        <tr><th>Yếu tố</th><th>Chuẩn áp dụng</th><th>Ví dụ cụ thể</th></tr>
+        <tr><td>Ngôi xưng hô</td><td>Sử dụng biệt danh công ty, ngôi thứ nhất để truyền đạt</td><td>"DRM Design", "tôi", "chúng tôi"</td></tr>
+        <tr><td>Icon</td><td>Hạn chế sử dụng icon, nếu sử dụng thì nên dùng khi cần nhấn mạnh hoặc giải thích ngắn gọn</td><td>🗒 "NGÀY TỐT" ĐỂ XÂY DỰNG, CẢI TẠO QUÁN CAFE THU HÚT KHÁCH CUỐI NĂM 2024</td></tr>
+        <tr><td>Đơn vị tiền tệ</td><td>Nhất quán sử dụng "VNĐ" cho mọi nội dung</td><td>10.000 VNĐ</td></tr>
+        <tr><td>Thời gian</td><td>Sử dụng định dạng 24 giờ và ngày/tháng/năm</td><td>14:00, 23/05/2024</td></tr>
+        <tr><td>Địa điểm</td><td>Viết đầy đủ quận và thành phố hoặc thành phố (tùy thuộc vào công trình)</td><td>"Thành phố Hồ Chí Minh"<br>"Liên Chiểu, Thành phố Đà Nẵng"</td></tr>
+        <tr><td>Dấu câu</td><td>Đặt dấu câu đúng quy cách, ví dụ dấu phẩy ngay sau từ và dấu cách trước từ tiếp theo</td><td>Đúng: "Xin chào, tôi là..."<br>Sai: "Xin chào ,tôi là..."</td></tr>
+        <tr><td>Thông tin dự án</td><td>Thể hiện đầy đủ các thông tin của dự án: Địa điểm – Diện tích (công trình thiết kế, thực tế) – Thể loại công trình – Đơn vị thiết kế và thi công<br><span style="font-size:12px;color:var(--sub);">(*) Tùy thuộc vào việc công ty đảm nhận thiết kế, thi công để cập nhật thông tin chính xác</span></td><td>THÔNG TIN DỰ ÁN<br>- Loại hình công trình: Cafe<br>- Diện tích: 80 m²<br>- Địa điểm: Thành phố Đà Nẵng<br>- Thiết kế và thi công hoàn thiện: DRM Design</td></tr>
+        <tr><td>Thể loại công trình</td><td>Dùng từ ngữ hay sử dụng nhất của đối tượng khách hàng mục tiêu, viết in hoa</td><td>- CAFE<br>- CỬA HÀNG (SHOP)<br>- SPA<br>- NHÀ HÀNG (RESTAURANT)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Nên dùng — Không nên dùng</h3>
+      <table>
+        <tr><th>Tình huống</th><th>Nên dùng</th><th>Không nên dùng</th></tr>
+        <tr><td>Chào hỏi khách hàng</td><td class="ok">"DRM Design xin chào", "Xin chào anh/chị"</td><td class="no">"Ế", "Hi"</td></tr>
+        <tr><td>Kết thúc email</td><td class="ok">"Trân trọng", "Xin cảm ơn"</td><td class="no">"Dye", "Cya"</td></tr>
+        <tr><td>Thông báo lỗi</td><td class="ok">"Xin lỗi anh/chị, hiện tại đang có 1 số vấn đề..., DRM Design sẽ liên hệ lại sau"</td><td class="no">"Hỏng rồi", "Oops"</td></tr>
+        <tr><td>Diễn đạt cảm xúc</td><td class="ok">"Liên hệ để được tư vấn miễn phí", "không sao đâu"</td><td class="no">"Bạn nhé!", "giúp tối nhé!"</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);"><b style="color:var(--ink);">Lưu ý:</b> Không dùng các từ ngữ biểu thị cảm xúc kiểu thân mật quá đà như <b>"nhé"</b>, <b>"nha"</b> trong nội dung chính thức.</p>
+    </div>
+    <div class="card">
+      <h3>Phần mô tả / dẫn dắt vấn đề trên Fanpage</h3>
+      <table>
+        <tr><th>Nền tảng</th><th>Giới hạn</th><th>Cách viết</th></tr>
+        <tr><td>Facebook (Fanpage)</td><td>Không giới hạn</td><td>Cố gắng viết 1–2 dòng, phần còn lại xuống dòng rõ ràng theo cấu trúc ở tab Tiêu đề</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="cta" id="cta-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--cta)"></span>
+      <div><h2>CTA — Fanpage</h2><p>Áp dụng cho phần kết bài viết / video đăng Fanpage</p></div>
+    </div>
+    <div class="card">
+      <span class="label" style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a !important;letter-spacing:normal;display:block;">Mẫu CTA chuẩn — áp dụng cho tất cả video/bài</span>
+      <div class="quote" style="border-color:var(--cta);">
+        "Bạn đang tìm kiếm đơn vị thiết kế và thi công <span style="color:var(--brand-dark);font-weight:700;">[quán cafe / nhà hàng / shop / spa]</span> + <span style="color:var(--brand-dark);font-weight:700;">[giải pháp/nỗi đau khách hàng đang có ở phần tiêu đề]</span>. Hãy liên hệ DRM Design để được hỗ trợ tư vấn."
+      </div>
+      <table style="margin-top:12px;">
+        <tr><th>Phần cần điền</th><th>Lấy nội dung từ đâu?</th></tr>
+        <tr><td><span style="color:var(--brand-dark);font-weight:700;">[quán cafe / nhà hàng / shop / spa]</span></td><td>Đúng thể loại công trình đang trình bày trong bài/video đó — chỉ chọn 1 trong 4 loại</td></tr>
+        <tr><td><span style="color:var(--brand-dark);font-weight:700;">[giải pháp/nỗi đau...]</span></td><td>Lấy đúng phần "giải pháp giải quyết vấn đề" đã viết trong tiêu đề bài (xem tab 2. Tiêu đề) — diễn đạt lại ngắn gọn, không cần chép y nguyên</td></tr>
+      </table>
+      <div class="example" style="margin-top:12px;">
+        <b>Ví dụ minh họa — áp dụng công thức vào 1 bài thật:</b>
+        <p style="margin:8px 0 4px;">Tiêu đề bài viết: <i>"KHÔNG GIAN CAFE INDUSTRIAL - PHONG CÁCH TỐI GIẢN, CÔNG NĂNG TỐI ĐA CHO VIỆC HỌC TẬP VÀ LÀM VIỆC"</i></p>
+        <p style="margin:4px 0 0;">→ CTA tương ứng: <i>"Bạn đang tìm kiếm đơn vị thiết kế và thi công <b style="color:var(--brand-dark);">quán cafe</b> + <b style="color:var(--brand-dark);">phong cách tối giản, công năng tối đa cho việc học tập và làm việc</b>? Hãy liên hệ DRM Design để được hỗ trợ tư vấn."</i></p>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Phần <span style="color:var(--brand-dark);font-weight:600;">in đỏ</span> là 2 chỗ duy nhất cần thay đổi theo từng bài — phần còn lại giữ nguyên y hệt mọi lúc.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a;letter-spacing:normal;">Video quảng cáo &amp; video quay thực tế</h3>
+        <p>Có để <b>text CTA</b> trên màn hình, độ dài <b>10–15 từ</b>.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a;letter-spacing:normal;">Video AI</h3>
+        <p><b>Không</b> để text CTA — chỉ dùng voice + slogan.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:14.5px;text-transform:none;font-weight:700;color:#1c1c1a;letter-spacing:normal;">Chuẩn viết nút bấm (button / CTA ngắn)</h3>
+      <p>Dùng danh từ hoặc cụm mệnh lệnh ngắn, rõ ràng — trừ trường hợp đặc biệt cần nhấn mạnh cảm xúc.</p>
+      <div class="example">Ví dụ: <b>"Đăng ký ngay"</b>, <b>"Liên hệ ngay"</b>, <b>"Điền thông tin"</b></div>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="slogan" id="slogan-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--slogan)"></span>
+      <div><h2>Slogan — Fanpage</h2><p>Đặt ngay sau CTA, ở cuối video/bài viết</p></div>
+    </div>
+    <div class="card">
+      <span class="label">Slogan chuẩn thương hiệu</span>
+      <div class="quote">"DRM Design — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả"</div>
+      <p style="margin-top:10px;">Có thể linh hoạt thay đổi theo slogan riêng của từng chiến dịch khi cần.</p>
+    </div>
+    <div class="card">
+      <h3>Cách thể hiện — Bài viết</h3>
+      <p>Đặt <b>ngay sau CTA</b>, in nghiêng đậm để tách biệt với phần nội dung phía trên. Ngay bên dưới là khối thông tin liên hệ (hotline, địa chỉ, website).</p>
+    </div>
+    <div class="card">
+      <h3>Cách thể hiện — Video / Video reel</h3>
+      <p>Video AI: hiển thị <b>text</b> (đặt ở vị trí như câu hook) + đọc bằng <b>voice</b>.</p>
+      <p>Đọc tên công ty <b>"DRM Design"</b> trước khi đọc câu slogan.</p>
+    </div>
+    <div class="card">
+      <h3>Vị trí đặt text (video)</h3>
+      <p>Đặt ở khu vực trên mặt bàn (theo hình mẫu dựng sẵn).</p>
+      <p><b>Tránh</b> đặt vào vùng khung an toàn (safe zone) của video.</p>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="hashtag" id="hashtag-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--hashtag)"></span>
+      <div><h2>Hashtag — Fanpage</h2><p>Đính kèm cuối mỗi bài đăng / caption</p></div>
+    </div>
+    <div class="card">
+      <span class="label">Cấu trúc hashtag chuẩn</span>
+      <div class="formula">
+        <b>#drmdesign</b> + <b>#từ khóa chính</b> + <b>#từ khóa phụ</b>
+      </div>
+      <p style="font-size:13px;color:var(--sub);">Lưu ý từ khóa phụ: viết liền không dấu — ví dụ <b>F&amp;B → FnB</b> (tránh ký tự đặc biệt "&amp;" trong hashtag).</p>
+    </div>
+    <div class="card">
+      <h3>Thông tin đính kèm cuối bài (kèm hashtag)</h3>
+      <div class="contact">
+        <p><b>DRM Design</b> — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả</p>
+        <p>Hotline / Zalo: <b>0966 776 375</b></p>
+        <p>Văn phòng đại diện: <b>07 Mỹ An 9, Ngũ Hành Sơn, TP Đà Nẵng</b></p>
+        <p>Website: <b>drmdesign.vn</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="dangnd" id="dangnd-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--dạng)"></span>
+      <div><h2>Các dạng nội dung — Fanpage</h2><p>4 nhóm chủ đề × 5 góc nội dung ưu tiên</p></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">1. Thiết kế &amp; AI thiết kế</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Bài viết: "5 phong cách thiết kế quán cafe phổ biến năm 2025"</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Album ảnh: hành trình từ sketch tay → 3D → công trình thực tế</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Post: "Minimal vs Tropical — phong cách nào cho quán &lt;50m²?"</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Quote hình ảnh: "Không gian đẹp giữ chân khách hàng lâu hơn"</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Clip khách hàng reaction khi xem phối cảnh lần đầu</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">2. Công trình thi công</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Infographic: "Checklist 7 bước thi công quán cafe trong 30 ngày"</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Album time-lapse: đội ngũ thi công từ khung → bàn giao</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Bài so sánh: "Gỗ tự nhiên vs gỗ công nghiệp — chọn sao cho hợp chi phí?"</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Ảnh quote: "Mỗi viên gạch đặt xuống là một niềm tin gửi gắm"</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Video khách hàng nhận quán, cảm xúc bước vào lần đầu</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">3. Kinh doanh &amp; vận hành F&amp;B</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Carousel: "3 layout giúp tăng 20% doanh thu cho quán nhỏ"</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Câu chuyện: chủ quán trẻ mở quán thành công nhờ thiết kế chuẩn</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Case study: "200tr vs 500tr — khác biệt trong quán cafe là gì?"</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Post cảm hứng: "Không gian tốt biến khách lạ thành khách quen"</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Feedback clip: chủ quán chia sẻ "Doanh thu tăng 30% sau cải tạo"</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">4. Câu chuyện thương hiệu &amp; dự án</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Post: "Vì sao chúng tôi chọn tập trung vào ngành F&amp;B?"</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Story: hành trình làm dự án cùng chủ đầu tư đam mê cà phê</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Trước – Sau: từ nhà cũ thành quán check-in hot (album ảnh)</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Video cảm hứng: "Mỗi công trình là niềm tự hào của đội ngũ"</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Video phỏng vấn: khách hàng chia sẻ trải nghiệm hợp tác</div></div>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="baimau" id="baimau-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--baimau)"></span>
+      <div><h2>Bài mẫu hoàn chỉnh — Fanpage</h2><p>Khung viết bài chuẩn + 1 bài thực tế đã đăng để tham khảo</p></div>
+    </div>
+    <div class="card">
+      <h3>Khung viết bài chuẩn (điền trước khi viết)</h3>
+      <table>
+        <tr><th>Hạng mục</th><th>Nội dung cần điền</th></tr>
+        <tr><td>Idea</td><td>Ý tưởng chính của bài, 1 câu</td></tr>
+        <tr><td>Vấn đề / Nỗi đau</td><td>Khách hàng đang gặp khó khăn gì</td></tr>
+        <tr><td>Insight (mong muốn thầm kín)</td><td>Điều khách thật sự mong muốn nhưng ít khi nói ra</td></tr>
+        <tr><td>Dạng content</td><td>Content chuyển đổi / nhận diện / tương tác</td></tr>
+        <tr><td>Công thức content dùng</td><td>AIDA – PAS – hoặc 4P (Picture, Promise, Prove, Push)</td></tr>
+        <tr><td>CTA</td><td>Câu kêu gọi hành động (xem chuẩn ở tab 3)</td></tr>
+        <tr><td>Link Final</td><td>Đăng lên Media công ty, quản lý theo tháng/hạng mục, mỗi người 1 folder riêng</td></tr>
+        <tr><td>Số lần chỉnh sửa</td><td>Ghi nhận số lần Leader kiểm duyệt trước khi đăng</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Ví dụ minh họa theo Pillar nội dung - Bài viết</h3>
+      <table>
+        <tr><th>Pillar nội dung</th><th>Tiêu đề và Idea bài viết</th><th>Link bài viết minh họa (Lark Doc)</th></tr>
+        <tr>
+          <td>1. Thiết kế &amp; AI thiết kế</td>
+          <td>
+            <p style="font-weight:600;margin-bottom:4px;">Fishing Village Restaurant — "TRẢI NGHIỆM KHÔNG GIAN ĐỘC ĐÁO LẤY CẢM HỨNG TỪ LÀNG CHÀI KHIẾN THỰC KHÁCH KHÔNG MUỐN RỜI ĐI"</p>
+            <p style="font-size:12.5px;color:var(--sub);">Idea: Fishing Village Restaurant | Trải nghiệm không gian độc đáo lấy cảm hứng từ làng chài miền Trung (mái lá, lưới cá, mái chèo), phù hợp mặt bằng 200–300m² cần cải tạo nhanh.</p>
+          </td>
+          <td><a href="https://t5s3l1fkyns.sg.larksuite.com/docx/U1L4dUuDHoK88QxuO09lYuX6ghb?from=from_copylink" target="_blank" rel="noopener">Xem bài viết minh họa (Lark Doc)</a></td>
+        </tr>
+        <tr>
+          <td>2. Công trình thi công</td>
+          <td>
+            <p style="font-weight:600;margin-bottom:4px;">"CẬP NHẬT TIẾN ĐỘ THI CÔNG - MIAMY CAFE"</p>
+            <p style="font-size:12.5px;color:var(--sub);">Idea: Cập nhật tiến độ thi công của Miamy Cafe.</p>
+          </td>
+          <td><a href="https://t5s3l1fkyns.sg.larksuite.com/docx/FsBydh4q3osAUnxzNSvl2CqNgNe?from=from_copylink" target="_blank" rel="noopener">Xem bài viết minh họa (Lark Doc)</a></td>
+        </tr>
+        <tr>
+          <td>3. Kinh doanh &amp; vận hành F&amp;B</td>
+          <td>
+            <p style="font-weight:600;margin-bottom:4px;">"NHỮNG THƯƠNG HIỆU F&amp;B TẠI ĐÀ NẴNG - SỬ DỤNG MÀU SẮC, VẬT LIỆU, DECOR KHÔNG GIAN NHƯ THẾ NÀO TRONG KHÔNG GIAN CỦA MÌNH GIÚP KHÁCH HÀNG DỄ DÀNG NHẬN DIỆN"</p>
+            <p style="font-size:12.5px;color:var(--sub);">Idea: Thị trường F&amp;B Đà Nẵng ngày càng khốc liệt, có quá nhiều quán đẹp mọc lên. Chủ đầu tư loay hoay không biết làm sao để khách hàng nhớ đến mình giữa hàng trăm nghìn đối thủ.</p>
+          </td>
+          <td><a href="https://t5s3l1fkyns.sg.larksuite.com/wiki/Z3FPwMQPyiLHI3k5krqlYvF8gIf?from=from_copylink" target="_blank" rel="noopener">Xem bài viết minh họa (Lark Wiki)</a></td>
+        </tr>
+        <tr>
+          <td>4. Câu chuyện thương hiệu &amp; dự án</td>
+          <td>
+            <p style="font-weight:600;margin-bottom:4px;">"ĐƯA CÂU CHUYỆN THƯƠNG HIỆU VÀO TRONG KHÔNG GIAN KINH DOANH"</p>
+            <p style="font-size:12.5px;color:var(--sub);">Idea: Khai thác câu chuyện thương hiệu để phát triển không gian kinh doanh.</p>
+          </td>
+          <td><a href="https://t5s3l1fkyns.sg.larksuite.com/docx/YxXJd2n4qoZJFIxaN2SlimdigWb?from=from_copylink" target="_blank" rel="noopener">Xem bài viết minh họa (Lark Doc)</a></td>
+        </tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Ví dụ minh họa theo Pillar nội dung - Video/ Reel</h3>
+      <table>
+        <tr><th>Pillar nội dung</th><th>Tiêu đề và Idea bài viết</th><th>Link bài viết minh họa (Lark Doc)</th></tr>
+        <tr>
+          <td>1. Thiết kế &amp; AI thiết kế</td>
+          <td colspan="2" style="color:var(--sub);">Chưa có ví dụ — cần bổ sung</td>
+        </tr>
+        <tr>
+          <td>2. Công trình thi công</td>
+          <td colspan="2" style="color:var(--sub);">Chưa có ví dụ — cần bổ sung</td>
+        </tr>
+        <tr>
+          <td>3. Kinh doanh &amp; vận hành F&amp;B</td>
+          <td colspan="2" style="color:var(--sub);">Chưa có ví dụ — cần bổ sung</td>
+        </tr>
+        <tr>
+          <td>4. Câu chuyện thương hiệu &amp; dự án</td>
+          <td colspan="2" style="color:var(--sub);">Chưa có ví dụ — cần bổ sung</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="duyet" id="duyet-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--duyet)"></span>
+      <div><h2>Quy trình duyệt bài — Fanpage</h2><p>Bảng phân quyền Marketing đầy đủ — áp dụng chung cho Content Creator &amp; TTS Content Social, không đổi theo nền tảng</p></div>
+    </div>
+    <div class="card">
+      <h3>3 vùng quyết định</h3>
+      <div class="grid3">
+        <div class="example" style="border-left-color:#2f5c0e;background:#e3f1d9;"><span class="vung-badge vung-a">A</span><br><br>Tự quyết, không cần báo trước — chỉ ghi nhận trong báo cáo tuần</div>
+        <div class="example" style="border-left-color:#8a5a00;background:#fdecc8;"><span class="vung-badge vung-b">B</span><br><br>Tự quyết, nhưng phải báo cáo trong 24 giờ</div>
+        <div class="example" style="border-left-color:var(--brand-dark);background:#fbdedb;"><span class="vung-badge vung-c">C</span><br><br>Phải xin ý kiến Leader MKT (hoặc BLĐ) trước khi làm</div>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Nguyên tắc: quyết định theo guideline có sẵn, không theo cảm tính. Gặp nội dung nhạy cảm, vượt ngưỡng ngân sách hoặc đổi định hướng → tự động chuyển thành Vùng C. Cột "Người thực hiện" là người trực tiếp làm; cột "Người quyết định" là người chịu trách nhiệm duyệt cuối cùng — hai vai trò này có thể khác nhau.</p>
+    </div>
+    <div class="card">
+      <h3>Bảng phân quyền chi tiết theo nhóm công việc</h3>
+      <table>
+        <tr><th>Vùng</th><th>Công việc</th><th>Người thực hiện</th><th>Người quyết định</th><th>Ngưỡng / Điều kiện</th><th>Cơ chế kiểm soát</th></tr>
+        <tr class="grouphead"><td colspan="6">A. LẬP KẾ HOẠCH NỘI DUNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Xây dựng Calendar (idea, mô tả nội dung, lịch đăng bài) tuần/tháng theo chủ đề &amp; định hướng quý đã duyệt</td><td>Content Creator (Social)</td><td>Content Creator</td><td>Đúng mục tiêu, chiến lược quý Leader MKT đã duyệt — đúng tệp khách hàng, thị trường, thông điệp định vị</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Đề xuất chủ đề, nội dung/chiến dịch mới, thay đổi định hướng nội dung tháng/quý</td><td>Content Creator</td><td>Leader MKT</td><td>Thay đổi ngoài chiến lược quý đã duyệt</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">B. SẢN XUẤT NỘI DUNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Viết caption (tiêu đề), CTA, thiết kế hình ảnh/video theo brief &amp; bộ nhận diện đã duyệt</td><td>TTS Content Social</td><td>Content Creator</td><td>Đúng guideline thương hiệu hiện hành đang triển khai</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Chỉnh sửa nội dung theo phản hồi kiểm duyệt</td><td>TTS Content Social</td><td>Content Creator / Leader MKT</td><td>Theo góp ý đã nhận</td><td>Ghi nhận khi đăng</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Thử nghiệm định dạng nội dung mới (trend, format chưa từng làm)</td><td>Content Creator</td><td>Content Creator</td><td>Không thuộc nhóm nhạy cảm, không phát sinh chi phí</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nội dung liên quan thời sự nhạy cảm, so sánh/đề cập đối thủ</td><td>Content Creator</td><td>Leader MKT</td><td>Mọi trường hợp</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">C. KIỂM DUYỆT &amp; ĐĂNG BÀI</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Đăng bài đúng lịch, đúng guideline, không nhạy cảm</td><td>TTS Content Social</td><td>Content Creator (tự duyệt)</td><td>Đúng lịch &amp; guideline đã duyệt</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Đăng bài phát sinh ngoài lịch (bắt trend nhanh, phản hồi kịp thời)</td><td>Content Creator</td><td>Content Creator</td><td>Không thuộc nhóm nhạy cảm ở trên</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nội dung khuyến mãi/giảm giá lớn, công bố sản phẩm/dịch vụ mới</td><td>Content Creator</td><td>Leader MKT</td><td>Ảnh hưởng doanh thu hoặc định vị thương hiệu</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">D. TƯƠNG TÁC CỘNG ĐỒNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Trả lời bình luận/inbox thông thường theo kịch bản mẫu (FAQ)</td><td>TTS Content Social</td><td>TTS Content Social</td><td>Đúng kịch bản/FAQ đã ban hành</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Xử lý bình luận tiêu cực nhẹ, phàn nàn dịch vụ đơn lẻ</td><td>Content Creator</td><td>Content Creator</td><td>Theo SOP xử lý khiếu nại đã ban hành</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Khủng hoảng truyền thông (lan truyền tiêu cực, báo chí, đông người phản ứng)</td><td>Leader MKT</td><td>Leader MKT</td><td>Mọi trường hợp</td><td>Xử lý ngay + báo BLĐ tức thì</td></tr>
+
+        <tr class="grouphead"><td colspan="6">E. QUẢNG CÁO (ADS) &amp; NGÂN SÁCH</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Chạy/tối ưu ads cho bài đã duyệt, trong ngân sách &amp; mục tiêu đã cấp</td><td>Content Creator</td><td>Content Creator</td><td>≤ 300.000đ / lần chi</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Tăng ngân sách ads cho 1 bài/chiến dịch đang chạy</td><td>Content Creator</td><td>Content Creator</td><td>300.000 – 1.000.000đ / lần</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Chi ads vượt mức, đổi mục tiêu/đối tượng chiến dịch lớn</td><td>Content Creator</td><td>Leader MKT</td><td>&gt; 1.000.000đ / lần hoặc thay đổi mục tiêu chiến dịch</td><td>Trình trước</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Tổng ngân sách ads tháng vượt hạn mức đã duyệt</td><td>Leader MKT</td><td>BLĐ</td><td>Vượt ngân sách ads tháng đã duyệt (hiện ~5–20 triệu/tháng)</td><td>Trình trước, SLA phản hồi 48h</td></tr>
+
+        <tr class="grouphead"><td colspan="6">F. HỢP TÁC &amp; ĐỐI NGOẠI</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Hợp tác KOL/Influencer, minigame có quà tặng giá trị lớn</td><td>Leader MKT</td><td>Leader MKT</td><td>≤ 5.000.000đ / hợp tác, ngắn hạn</td><td>Ghi trong báo cáo tháng</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Hợp tác KOL chi phí lớn / hợp đồng dài hạn / ký với agency</td><td>Leader MKT</td><td>BLĐ</td><td>&gt; 5.000.000đ hoặc hợp đồng trên 1 tháng</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">G. SEEDING &amp; KẾT NỐI KHÁCH HÀNG TIỀM NĂNG (NICK VIA)</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Seeding: bình luận, đăng bài trong Group, Fanpage công ty</td><td>TTS Content Social</td><td>TTS Content Social</td><td>Đúng kịch bản seeding &amp; chủ đề đã duyệt</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Đăng bài, chia sẻ bài viết công ty trên trang cá nhân nick Via</td><td>TTS Content Social</td><td>TTS Content Social</td><td>Đúng nội dung đã duyệt để chia sẻ, không tự viết thêm ngoài kịch bản</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Dùng nick Via kết nối, nhắn tin tư vấn với khách hàng tiềm năng</td><td>TTS Content Social</td><td>Content Creator</td><td>Theo kịch bản tiếp cận đã ban hành, không tự cam kết giá/ưu đãi</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nhắn tin có nội dung cam kết giá/ưu đãi đặc biệt, hoặc khách phản hồi tiêu cực/khiếu nại qua Via</td><td>TTS Content Social</td><td>Leader MKT</td><td>Có yếu tố cam kết hoặc khiếu nại</td><td>Báo ngay, không chờ SLA</td></tr>
+      </table>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>SLA phản hồi</h3>
+        <p>Leader MKT phản hồi Vùng C trong <b>24 giờ làm việc</b> (mặc định).</p>
+        <p>Khi phải trình Ban lãnh đạo (vượt ngân sách ads tháng, hợp tác KOL lớn): <b>48 giờ làm việc</b>.</p>
+      </div>
+      <div class="card">
+        <h3>Ngoại lệ — Khủng hoảng truyền thông</h3>
+        <p>Không chờ SLA. Xử lý <b>ngay lập tức</b>, báo Leader MKT và Ban lãnh đạo <b>đồng thời</b>, không chờ quy trình trình duyệt thông thường. Áp dụng tương tự cho khiếu nại/cam kết phát sinh qua kênh seeding (nick Via).</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="fanpage" data-cat="lichdang" id="lichdang-fanpage">
+    <div class="sechead"><span class="dot" style="background:var(--lichdang)"></span>
+      <div><h2>Lịch đăng bài — Fanpage</h2><p>Tần suất &amp; khung giờ đăng cố định</p></div>
+    </div>
+    <div class="card" style="border:1px solid var(--brand);">
+      <p style="font-size:14px;font-weight:700;color:var(--brand-dark);margin:0 0 8px;">2 bài/video mỗi tuần — thứ 3 &amp; thứ 6</p>
+      <div class="flow"><span class="step">Fanpage</span><span class="arrow">→</span><span class="step">6h00 – 9h00 sáng</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ========================== TIKTOK ============================ -->
+  <!-- ============================================================ -->
+
+  <section data-platform="tiktok" data-cat="tieude" id="tieude-tiktok">
+    <div class="sechead" style="flex-direction:column;align-items:flex-start;gap:6px;">
+      <div><h2>Tiêu chuẩn về Hook (Tiêu đề) — TikTok</h2><p>Nguồn: GUIDLINE TIKTOK BRAND — DRM DESIGN 2025. Trên TikTok, "tiêu đề" thể hiện qua chữ Hook xuất hiện trên màn hình video.</p></div>
+      <span class="dot" style="background:var(--tiêu-đề)"></span>
+    </div>
+    <div class="card">
+      <h3>Quy chuẩn chữ Hook (Text Hook)</h3>
+      <table>
+        <tr><th>Thuộc tính</th><th>Chuẩn áp dụng</th></tr>
+        <tr><td>Màu chữ</td><td>Cam chuyển màu – Text Effect (f06d22) hoặc Trắng (FFFFFF)</td></tr>
+        <tr><td>Kiểu chữ</td><td>Viết in hoa, đổ bóng (80, 10, 5)</td></tr>
+        <tr><td>Font</td><td>SVN AVO Bold Italic, size 12</td></tr>
+        <tr><td>Vị trí</td><td>Góc dưới, mép bàn</td></tr>
+        <tr><td>Giới hạn</td><td>Dưới 2 dòng, dưới 15 từ<br><span style="font-size:12px;color:var(--sub);">(*) Lưu ý đặt trong khung text an toàn, tránh tràn viền</span></td></tr>
+        <tr><td>Hiệu ứng xuất hiện</td><td>Paper ball + sound "paper" — thời lượng 1s</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Text phụ (mô tả bổ sung ngay sau Hook)</h3>
+      <table>
+        <tr><th>Thuộc tính</th><th>Chuẩn áp dụng</th></tr>
+        <tr><td>Màu chữ</td><td>Cam chuyển màu – Text Effect (f06d22) hoặc Trắng (FFFFFF)</td></tr>
+        <tr><td>Kiểu chữ</td><td>Viết thường, đổ bóng (80, 10, 5)</td></tr>
+        <tr><td>Font</td><td>SVN AVO, size 12</td></tr>
+        <tr><td>Vị trí</td><td>Phía trên mặt bàn</td></tr>
+        <tr><td>Giới hạn</td><td>2–3 dòng, 25–50 từ<br><span style="font-size:12px;color:var(--sub);">(*) Lưu ý đặt trong khung text an toàn, tránh tràn viền</span></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Hiệu ứng &amp; âm thanh chung xuyên suốt video</h3>
+      <ul>
+        <li>Chuyển cảnh + xuất hiện text: <b>Ding</b>, <b>Pop</b> (tapping)</li>
+        <li>Hiệu ứng tuyết rung + sound effect [decision/success/OK] Zoom1 + whoosh</li>
+        <li>Tốc độ video: <b>1.1x</b></li>
+        <li>Âm thanh voice: cao <b>5–10</b></li>
+        <li>Thêm lớp phủ video màu đen ở đầu (Hook) và cuối video (CTA) như mẫu</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Khung an toàn (Safe zone)</h3>
+      <p>Toàn bộ Text Hook / CTA / Slogan phải nằm trong vùng khung an toàn của TikTok (tránh vùng bị che bởi icon tương tác, caption và thanh điều hướng của giao diện).</p>
+    </div>
+    <div class="card">
+      <h3>Bộ câu Hook mẫu (sưu tầm từ guideline)</h3>
+      <ul>
+        <li>"Quán cafe sân vườn cho giới trẻ – bạn chọn nội thất A hay B?"</li>
+        <li>"5 lỗi chọn vật liệu khiến nhà mau xuống cấp – bạn từng dính lỗi nào?"</li>
+        <li>"Quán cafe cũ ở quê lột xác thành villa mini 2 tầng"</li>
+        <li>"Khách chia sẻ lý do chọn A+ Home sau khi xem 7 công ty khác"</li>
+        <li>"Căn nhà 2 tầng hoàn thiện chỉ 780 triệu"</li>
+        <li>"Checklist 5 hạng mục nên ưu tiên khi ngân sách dưới 1 tỷ"</li>
+        <li>"Đừng lát gạch kiểu này nếu không muốn bong sau 2 năm"</li>
+        <li>"Cô Thảo – chủ quán cafe chia sẻ trải nghiệm khi làm với KTS Hưng Phát"</li>
+        <li>"Quy trình bàn giao công trình: từ nghiệm thu đến trao chìa khóa"</li>
+        <li>"Trước: nhà cấp 4 cũ nát – Sau: quán cafe thu hút triệu khách"</li>
+        <li>"Quán cafe chỉ 30m² mà vẫn có sân, vườn, phòng thờ riêng – quá đỉnh!"</li>
+      </ul>
+      <h3 style="margin-top:14px;">Mục tiêu của Hook (theo guideline)</h3>
+      <div class="keyword-grid">
+        <div class="kw">1. Tăng nhận diện thương hiệu</div>
+        <div class="kw">2. Tăng lượt tương tác (Like, Comment, Share)</div>
+        <div class="kw">3. Tăng lượt xem (giữ chân 3s–15s đầu)</div>
+        <div class="kw">4. Tạo chuyển đổi (Inbox, đăng ký tư vấn)</div>
+        <div class="kw">5. Tăng lượt lưu bài (Save)</div>
+        <div class="kw">6. Tăng độ uy tín, xây dựng niềm tin (Trust)</div>
+        <div class="kw">7. Tăng lượt chia sẻ (Share)</div>
+      </div>
+    </div>
+    <div class="pending-card">
+      <h3>⚠️ Đang chờ Leader MKT xác nhận</h3>
+      <ol>
+        <li>Bảng "Mục tiêu của Hook" và "Bộ câu Hook mẫu" ở trên được sưu tầm từ cùng 1 bảng gốc (Lark Sheets), nhưng khi xuất ra PDF, thứ tự khớp giữa từng câu Hook với từng mục tiêu cụ thể (và lý do hiệu quả đi kèm, VD: "gương mặt thật – công trình thật → đáng tin hơn ảnh render") bị xáo trộn. Nội dung câu Hook là chính xác 100%, nhưng nếu cần dùng để đào tạo theo đúng từng mục tiêu, nên đối chiếu lại trực tiếp trên Lark Sheets.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="noidung" id="noidung-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--noidung)"></span>
+      <div><h2>Tiêu chuẩn về nội dung — TikTok</h2><p>Giọng nói, ngữ pháp, giới hạn ký tự và những điều cần tránh</p></div>
+    </div>
+    <div class="card">
+      <h3>Cấu trúc tiêu chuẩn của 1 video</h3>
+      <div class="flow">
+        <span class="step">1. Hook (3–15s)</span><span class="arrow">→</span>
+        <span class="step">2. Nội dung chính</span><span class="arrow">→</span>
+        <span class="step">3. CTA</span><span class="arrow">→</span>
+        <span class="step">4. Slogan</span><span class="arrow">→</span>
+        <span class="step">5. Logo</span>
+      </div>
+      <table>
+        <tr><th>Phần</th><th>Nội dung chuẩn</th></tr>
+        <tr><td>1. Hook</td><td>Text Hook + hiệu ứng/sound trong 3–15s đầu để giữ chân người xem (tab 1. Hook)</td></tr>
+        <tr><td>2. Nội dung chính</td><td>Theo mục tiêu: giáo dục / storytelling / so sánh / cảm xúc / khách hàng nói gì, dùng avatar AI &amp; thời lượng đúng loại nội dung (tab 2, 6)</td></tr>
+        <tr><td>3. CTA</td><td>Text CTA (video quảng cáo/quay thực tế) hoặc chỉ voice (video AI) (tab 3. CTA)</td></tr>
+        <tr><td>4. Slogan</td><td>Gộp ngay sau CTA, đọc tên công ty trước khi đọc slogan (tab 4. Slogan)</td></tr>
+        <tr><td>5. Logo</td><td>Theo đúng quy chuẩn logo cho từng loại nội dung — công trình / brand / khác (tab 2, 7)</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:13px;color:var(--sub);">Nguyên tắc: toàn bộ text (Hook/CTA/Slogan) phải nằm trong khung an toàn (safe zone).</p>
+    </div>
+    <div class="card">
+      <h3>Giọng nói &amp; tông điệu</h3>
+      <p><span class="hl">Chuyên nghiệp – thân thiện – sáng tạo.</span> Linh hoạt theo hành trình khách hàng: giới thiệu sản phẩm cần tự tin nhiệt tình, hỗ trợ khách hàng cần nhẹ nhàng đồng cảm.</p>
+    </div>
+    <div class="card">
+      <h3>Quy chuẩn ngôn ngữ chung</h3>
+      <table>
+        <tr><th>Yếu tố</th><th>Chuẩn áp dụng</th><th>Ví dụ cụ thể</th></tr>
+        <tr><td>Ngôi xưng hô</td><td>Sử dụng biệt danh công ty, ngôi thứ nhất để truyền đạt</td><td>"DRM Design", "tôi", "chúng tôi"</td></tr>
+        <tr><td>Icon</td><td>Hạn chế sử dụng icon, nếu sử dụng thì nên dùng khi cần nhấn mạnh hoặc giải thích ngắn gọn</td><td>🗒 "NGÀY TỐT" ĐỂ XÂY DỰNG, CẢI TẠO QUÁN CAFE THU HÚT KHÁCH CUỐI NĂM 2024</td></tr>
+        <tr><td>Đơn vị tiền tệ</td><td>Nhất quán sử dụng "VNĐ" cho mọi nội dung</td><td>10.000 VNĐ</td></tr>
+        <tr><td>Thời gian</td><td>Sử dụng định dạng 24 giờ và ngày/tháng/năm</td><td>14:00, 23/05/2024</td></tr>
+        <tr><td>Địa điểm</td><td>Viết đầy đủ quận và thành phố hoặc thành phố (tùy thuộc vào công trình)</td><td>"Thành phố Hồ Chí Minh"<br>"Liên Chiểu, Thành phố Đà Nẵng"</td></tr>
+        <tr><td>Dấu câu</td><td>Đặt dấu câu đúng quy cách</td><td>Đúng: "Xin chào, tôi là..."<br>Sai: "Xin chào ,tôi là..."</td></tr>
+        <tr><td>Thông tin dự án</td><td>Địa điểm – Diện tích – Thể loại công trình – Đơn vị thiết kế và thi công</td><td>THÔNG TIN DỰ ÁN<br>- Loại hình công trình: Cafe<br>- Diện tích: 80 m²<br>- Địa điểm: Thành phố Đà Nẵng<br>- Thiết kế và thi công hoàn thiện: DRM Design</td></tr>
+        <tr><td>Thể loại công trình</td><td>Dùng từ ngữ hay sử dụng nhất của khách hàng mục tiêu, viết in hoa</td><td>- CAFE<br>- CỬA HÀNG (SHOP)<br>- SPA<br>- NHÀ HÀNG (RESTAURANT)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Nên dùng — Không nên dùng</h3>
+      <table>
+        <tr><th>Tình huống</th><th>Nên dùng</th><th>Không nên dùng</th></tr>
+        <tr><td>Chào hỏi khách hàng</td><td class="ok">"DRM Design xin chào", "Xin chào anh/chị"</td><td class="no">"Ế", "Hi"</td></tr>
+        <tr><td>Thông báo lỗi</td><td class="ok">"Xin lỗi anh/chị, hiện tại đang có 1 số vấn đề..., DRM Design sẽ liên hệ lại sau"</td><td class="no">"Hỏng rồi", "Oops"</td></tr>
+        <tr><td>Diễn đạt cảm xúc</td><td class="ok">"Liên hệ để được tư vấn miễn phí", "không sao đâu"</td><td class="no">"Bạn nhé!", "giúp tối nhé!"</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);"><b style="color:var(--ink);">Lưu ý:</b> Không dùng <b>"nhé"</b>, <b>"nha"</b> trong nội dung chính thức.</p>
+    </div>
+    <div class="card">
+      <h3>Avatar AI đại diện thương hiệu</h3>
+      <table>
+        <tr><th>Avatar</th><th>Trang phục</th><th>Tỷ lệ sử dụng</th><th>Dùng cho</th></tr>
+        <tr><td>Anh Hà (AI)</td><td>Áo sơ mi đen</td><td>40%</td><td rowspan="2">Nội dung Công trình, Tips, Kiến thức</td></tr>
+        <tr><td>Anh Hà (AI)</td><td>Áo đồng phục công ty (cam)</td><td>60%</td></tr>
+        <tr><td>Anh Hà (AI)</td><td>Áo sơ mi xanh</td><td>—</td><td>Nội dung Brand / Thương hiệu</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:13px;color:var(--sub);">Giọng nói: dùng AI voice của anh Hà, cá nhân hóa xuyên suốt bằng hình ảnh &amp; giọng nói KTS DRM.</p>
+    </div>
+    <div class="card">
+      <h3>Thời lượng video theo loại nội dung</h3>
+      <table>
+        <tr><th>Loại nội dung</th><th>Thời lượng</th></tr>
+        <tr><td>Công trình AI, có thuyết minh</td><td>60s – 180s</td></tr>
+        <tr><td>Công trình AI, không thuyết minh</td><td>45s – 60s</td></tr>
+        <tr><td>Kiến thức, Tip</td><td>60s – 90s</td></tr>
+        <tr><td>Brand – Thương hiệu</td><td>90s – 180s</td></tr>
+        <tr><td>Video ads Facebook</td><td>90s – 180s</td></tr>
+        <tr><td>Video ads Công trình / Kiến thức / Tip</td><td>60s – 90s</td></tr>
+        <tr><td>Video ads Brand – Thương hiệu</td><td>90s – 180s</td></tr>
+        <tr><td>Video ads ngắn (dạng teaser)</td><td>&lt; 15s</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Định dạng khung hình, chất lượng &amp; Logo</h3>
+      <div class="grid2">
+        <div>
+          <p><b>Khung hình:</b></p>
+          <ul>
+            <li>Video đăng tải: tỷ lệ <b>16:9</b></li>
+            <li>Video ads: tỷ lệ <b>1:1</b></li>
+            <li>Chất lượng: <b>HD &amp; Full HD</b></li>
+          </ul>
+        </div>
+        <div>
+          <p><b>Logo:</b></p>
+          <ul>
+            <li>Hình ảnh CTA, Hook: có logo màu cam để nhận diện</li>
+            <li>Video công trình: theo Guideline công ty</li>
+            <li>Video Brand: màu sắc nguyên bản (cam chuyển màu)</li>
+            <li>Các dạng nội dung còn lại: logo màu trắng</li>
+            <li>Video ads &lt; 15s: <b>không</b> để logo (tránh vấn đề bản quyền / bị giảm hiển thị)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Nhạc nền &amp; nguồn media</h3>
+      <p>Dùng âm thanh trên TikTok hoặc nhạc nền <b>không vi phạm bản quyền</b>, tiết tấu nhẹ nhàng, phù hợp đối tượng khách hàng mục tiêu. Truy cập album nhạc qua link Media công ty theo hướng dẫn (xem tab 7. Bài mẫu).</p>
+      <p>Mục đích chung: thể hiện chất lượng công trình thiết kế thi công (qua công năng, thẩm mỹ, feedback khách hàng).</p>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="cta" id="cta-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--cta)"></span>
+      <div><h2>CTA — TikTok</h2><p>Áp dụng cho phần kết mỗi video TikTok. Nguồn: GUIDLINE TIKTOK BRAND — DRM DESIGN 2025.</p></div>
+    </div>
+    <div class="card">
+      <span class="label">Mẫu CTA chuẩn — áp dụng cho tất cả video</span>
+      <div class="quote" style="border-color:var(--cta);">
+        "Bạn đang tìm kiếm đơn vị thiết kế và thi công <span style="color:var(--brand-dark);font-weight:700;">[quán cafe/nhà hàng/shop/spa]</span> (thay đổi thể loại công trình đang trình bày trong video) + [insight muốn truyền tải]. Hãy liên hệ DRM Design để được hỗ trợ tư vấn."
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Thay đổi thể loại công trình theo đúng nội dung đang trình bày, chèn thêm insight cụ thể của video đó.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Video quảng cáo &amp; video quay thực tế</h3>
+        <p>Có để <b>text CTA</b> trên màn hình, độ dài <b>10–15 từ</b>.</p>
+      </div>
+      <div class="card">
+        <h3>Video AI</h3>
+        <p><b>Không</b> để text CTA — chỉ dùng voice + slogan.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Quy chuẩn chữ CTA (khi có text)</h3>
+      <table>
+        <tr><th>Thuộc tính</th><th>Chuẩn áp dụng</th></tr>
+        <tr><td>Màu chữ</td><td>Cam chuyển màu – Text Effect (f06d22) hoặc Trắng (FFFFFF)</td></tr>
+        <tr><td>Kiểu chữ</td><td>Viết thường, đổ bóng (80, 10, 5)</td></tr>
+        <tr><td>Font</td><td>SVN AVO Bold, size 12</td></tr>
+        <tr><td>Vị trí</td><td>Phía trên 1/3 khung hình</td></tr>
+        <tr><td>Giới hạn</td><td>Dưới 2 dòng, dưới 15 từ (trong khung an toàn)</td></tr>
+        <tr><td>Hiệu ứng</td><td>Chói lòa 2 hoặc không dùng hiệu ứng</td></tr>
+        <tr><td>Âm thanh</td><td>Chọn 1 trong 2: Ding hoặc Pop (CTA_sound_culin)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Hiệu ứng mở đầu / kết thúc CTA</h3>
+      <p><b>Bắt đầu:</b> hiệu ứng súng cao su + sound "woosh".</p>
+      <p><b>Kết thúc:</b> hiệu ứng làm mờ sang trái.</p>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="slogan" id="slogan-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--slogan)"></span>
+      <div><h2>Slogan — TikTok</h2><p>Đặt ngay sau CTA, ở cuối video (gộp chung với CTA)</p></div>
+    </div>
+    <div class="card">
+      <span class="label">Slogan chuẩn thương hiệu</span>
+      <div class="quote">"DRM Design — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả"</div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">(*) Linh hoạt theo Slogan riêng của từng chiến dịch khi cần.</p>
+    </div>
+    <div class="card">
+      <h3>Quy chuẩn chữ Slogan</h3>
+      <table>
+        <tr><th>Thuộc tính</th><th>Chuẩn áp dụng</th></tr>
+        <tr><td>Cỡ chữ chính</td><td>Size 25</td></tr>
+        <tr><td>Hiệu ứng chữ</td><td>Tuyết rung – mờ dần, size 10</td></tr>
+        <tr><td>Vị trí</td><td>Trên mặt bàn (như hình mẫu) — lưu ý tránh khung an toàn</td></tr>
+        <tr><td>Thứ tự đọc voice</td><td>Đọc tên công ty <b>"DRM Design"</b> trước khi đọc câu Slogan</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Hiệu ứng chuyển cảnh khi vào Slogan</h3>
+      <p>Âm thanh: <b>Click camera shutter</b> (single shot). Hiệu ứng động: đi ra <b>màn chéo</b>.</p>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="hashtag" id="hashtag-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--hashtag)"></span>
+      <div><h2>Hashtag — TikTok</h2><p>Đính kèm cuối mỗi caption video</p></div>
+    </div>
+    <div class="card">
+      <span class="label">Cấu trúc hashtag chuẩn</span>
+      <div class="formula">
+        <b>#drmdesign</b> + <b>#từ khóa chính</b> + <b>#từ khóa phụ</b>
+      </div>
+      <p style="font-size:13px;color:var(--sub);">Lưu ý từ khóa phụ: viết liền không dấu — ví dụ <b>F&amp;B → FnB</b>.</p>
+    </div>
+    <div class="card">
+      <h3>Thông tin đính kèm cuối bài (kèm hashtag)</h3>
+      <div class="contact">
+        <p><b>DRM Design</b> — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả</p>
+        <p>Hotline / Zalo: <b>0966 776 375</b></p>
+        <p>Văn phòng đại diện: <b>07 Mỹ An 9, Ngũ Hành Sơn, TP Đà Nẵng</b></p>
+        <p>Website: <b>drmdesign.vn</b></p>
+      </div>
+    </div>
+    <div class="pending-card">
+      <h3>⚠️ Đang chờ Leader MKT xác nhận</h3>
+      <ol>
+        <li>Đã đối chiếu với "GUIDLINE TIKTOK BRAND — DRM DESIGN 2025" (tài liệu chi tiết về sản xuất video) — tài liệu này tập trung vào Hook/CTA/Slogan trên màn hình video và <b>không đề cập đến hashtag</b>. Đề xuất: có thể thêm 1 hashtag xu hướng đang thịnh hành tại thời điểm đăng (VD: #fyp, #xuhuong) để tăng khả năng tiếp cận — cần xác nhận trước khi ban hành chính thức.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="dangnd" id="dangnd-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--dạng)"></span>
+      <div><h2>Các dạng nội dung — TikTok</h2><p>Nguồn: GUIDLINE TIKTOK BRAND — DRM DESIGN 2025 — 2 nhóm nội dung chính + các ý tưởng khai thác thêm</p></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">Nhóm 1: Công trình</div>
+      <div class="angle"><b>Loại video</b><div class="ex">Dạng 1: Video dự án thiết kế AI (Cafe)<br>Dạng 2: Video quay thực tế quán cafe tại Đà Nẵng để minh họa cho nội dung DRM chia sẻ kiến thức (lưu ý dùng logo cam, avatar AI mặc đồng phục cam)</div></div>
+      <div class="angle"><b>Mục tiêu</b><div class="ex">Brand Awareness</div></div>
+      <div class="angle"><b>Hook chung</b><div class="ex">Duy trì sự tò mò: "Có gì đó sẽ xảy ra". Quá trình xử lý – chi tiết gây bất ngờ – insight của khách</div></div>
+      <div class="angle"><b>Nội dung</b><div class="ex">Cho thấy kết quả giải quyết vấn đề đã nêu một cách rõ rệt, gây "wow"</div></div>
+      <div class="angle"><b>Avatar</b><div class="ex">Anh Hà (AI) áo sơ mi đen (40%) hoặc áo đồng phục cam (60%)</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">Nhóm 2: Brand / Thương hiệu</div>
+      <div class="angle"><b>Loại video (chuyển cảnh Hook sang nội dung)</b><div class="ex">- Giới thiệu USP thương hiệu<br>- Hậu trường làm việc thực tế<br>- Dự án nổi bật + thương hiệu lồng vào</div></div>
+      <div class="angle"><b>Avatar</b><div class="ex">Anh Hà (AI) áo sơ mi xanh</div></div>
+      <div class="angle"><b>Ví dụ Hook thực tế</b><div class="ex">"DRM Design – Tại sao DRM Design chỉ nhận công trình ngành dịch vụ?"<br>"DRM Design – Một ngày làm việc của KTS tại công trình ở Đà Lạt"</div></div>
+    </div>
+    <div class="card">
+      <h3>Ý tưởng nội dung khác có thể khai thác thêm</h3>
+      <div class="grid2">
+        <ul>
+          <li>Video mini game</li>
+          <li>Video "Chọn A hay B?"</li>
+          <li>Tips mẹo ngắn, gây tranh luận</li>
+          <li>Video Before – After</li>
+          <li>Review khách hàng / video testimonial</li>
+          <li>Mini case study + chi phí — CTA: "Inbox nhận báo giá hôm nay"</li>
+        </ul>
+        <ul>
+          <li>Video checklist xây nhà</li>
+          <li>Infographic video</li>
+          <li>Video lỗi thường gặp</li>
+          <li>Behind the scenes thi công</li>
+          <li>Quá trình bàn giao, nghiệm thu</li>
+          <li>"Trước – Sau" cực ngắn (10s lột xác), mẫu nhà nhỏ đẹp bất ngờ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="baimau" id="baimau-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--baimau)"></span>
+      <div><h2>Bài mẫu hoàn chỉnh — TikTok</h2><p>Khung viết kịch bản chuẩn + công cụ dựng video AI theo guideline gốc</p></div>
+    </div>
+    <div class="card">
+      <h3>Khung viết kịch bản chuẩn (điền trước khi quay)</h3>
+      <table>
+        <tr><th>Hạng mục</th><th>Nội dung cần điền</th></tr>
+        <tr><td>Idea</td><td>Ý tưởng chính của video, 1 câu</td></tr>
+        <tr><td>Vấn đề / Nỗi đau</td><td>Khách hàng đang gặp khó khăn gì</td></tr>
+        <tr><td>Insight (mong muốn thầm kín)</td><td>Điều khách thật sự mong muốn nhưng ít khi nói ra</td></tr>
+        <tr><td>Công thức content dùng</td><td>AIDA – PAS – hoặc 4P (Picture, Promise, Prove, Push)</td></tr>
+        <tr><td>CTA</td><td>Câu kêu gọi hành động (xem chuẩn ở tab 3)</td></tr>
+        <tr><td>Số lần chỉnh sửa</td><td>Ghi nhận số lần Leader kiểm duyệt trước khi đăng</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Công cụ tạo video AI</h3>
+      <table>
+        <tr><th>Công cụ</th><th>Dùng để</th></tr>
+        <tr><td><a href="https://app.heygen.com/" target="_blank" rel="noopener">app.heygen.com</a></td><td>Tạo Avatar AI (anh Hà)</td></tr>
+        <tr><td><a href="https://elevenlabs.io/" target="_blank" rel="noopener">elevenlabs.io</a></td><td>Tạo giọng nói AI (voice anh Hà)</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:13px;color:var(--sub);">Tài liệu nội bộ tham chiếu: "Hướng dẫn sử dụng HeyGen AI" và "Kịch bản mẫu — DRM Design (Update 2025)" — liên hệ Leader MKT để lấy quyền truy cập nếu chưa có.</p>
+    </div>
+    <div class="card">
+      <h3>Nguồn Media dựng video (nội bộ)</h3>
+      <ul>
+        <li>Nhạc nền / âm thanh: <code>\\media-mkt\03. MEDIA THIET KE - MKT (DEMO 01)\03. AM THANH & NHAC - GUILDLINE</code></li>
+        <li>Media tổng (hình ảnh, video gốc): <code>\\media-mkt\03. MEDIA THIET KE - MKT (DEMO 01)</code></li>
+        <li>Video mẫu tham khảo: <a href="https://drive.google.com/file/d/1_qJnK1hKDpn1NnlAVea3E-dSqMUfjGtP/view?usp=drive_link" target="_blank" rel="noopener">xem trên Google Drive</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Quy chuẩn Video AI (mở đầu / CTA / Slogan / Logo)</h3>
+      <table>
+        <tr><th>Hạng mục</th><th>Chuẩn áp dụng</th></tr>
+        <tr><td>Font chữ chính</td><td>SVN AvoBold, cỡ chữ phù hợp khung hình, canh giữa, đổ bóng nổi bật — dùng xuyên suốt video</td></tr>
+        <tr><td>Text chính (Hook)</td><td>Chọn văn bản → mẫu văn bản → chọn mẫu theo hình minh họa có sẵn</td></tr>
+        <tr><td>Text phụ</td><td>Màu trắng, nền đen trong suốt (độ mờ 30–40% tùy sáng/tối khung hình), bo góc 23%</td></tr>
+        <tr><td>Video nền (Slogan)</td><td>Dùng video slogan chung của thương hiệu</td></tr>
+        <tr><td>Hiệu ứng âm thanh (bắt đầu)</td><td>Click camera shutter, single shot</td></tr>
+        <tr><td>Hiệu ứng hình (kết thúc)</td><td>Màn đóng chéo</td></tr>
+        <tr><td>Logo</td><td>Dùng logo brand màu trắng, đổ bóng đen mờ từ dưới video để nổi bật logo</td></tr>
+        <tr><td>Lưu ý màu sắc</td><td>Nếu màu chữ brand (cam/trắng/đen) trùng màu nền video → đổi màu chữ phù hợp hơn để đảm bảo dễ đọc</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="duyet" id="duyet-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--duyet)"></span>
+      <div><h2>Quy trình duyệt bài — TikTok</h2><p>Áp dụng chung theo Bảng phân quyền Marketing, không đổi theo nền tảng</p></div>
+    </div>
+    <div class="card">
+      <h3>3 vùng quyết định</h3>
+      <div class="grid3">
+        <div class="example" style="border-left-color:#2f5c0e;background:#e3f1d9;"><span class="vung-badge vung-a">A</span><br><br>Tự quyết, không cần báo trước — chỉ ghi nhận trong báo cáo tuần</div>
+        <div class="example" style="border-left-color:#8a5a00;background:#fdecc8;"><span class="vung-badge vung-b">B</span><br><br>Tự quyết, nhưng phải báo cáo trong 24 giờ</div>
+        <div class="example" style="border-left-color:var(--brand-dark);background:#fbdedb;"><span class="vung-badge vung-c">C</span><br><br>Phải xin ý kiến Leader MKT (hoặc BLĐ) trước khi làm</div>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Nguyên tắc: quyết định theo guideline có sẵn, không theo cảm tính. Gặp nội dung nhạy cảm, vượt ngưỡng ngân sách hoặc đổi định hướng → tự động chuyển thành Vùng C. Cột "Người thực hiện" là người trực tiếp làm; cột "Người quyết định" là người chịu trách nhiệm duyệt cuối cùng — hai vai trò này có thể khác nhau.</p>
+    </div>
+    <div class="card">
+      <h3>Bảng phân quyền chi tiết theo nhóm công việc</h3>
+      <table>
+        <tr><th>Vùng</th><th>Công việc</th><th>Người thực hiện</th><th>Người quyết định</th><th>Ngưỡng / Điều kiện</th><th>Cơ chế kiểm soát</th></tr>
+        <tr class="grouphead"><td colspan="6">A. LẬP KẾ HOẠCH NỘI DUNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Xây dựng Calendar (idea, mô tả nội dung, lịch đăng bài) tuần/tháng theo chủ đề &amp; định hướng quý đã duyệt</td><td>Content Creator (Social)</td><td>Content Creator</td><td>Đúng mục tiêu, chiến lược quý Leader MKT đã duyệt — đúng tệp khách hàng, thị trường, thông điệp định vị</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Đề xuất chủ đề, nội dung/chiến dịch mới, thay đổi định hướng nội dung tháng/quý</td><td>Content Creator</td><td>Leader MKT</td><td>Thay đổi ngoài chiến lược quý đã duyệt</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">B. SẢN XUẤT NỘI DUNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Viết caption (tiêu đề), CTA, thiết kế hình ảnh/video theo brief &amp; bộ nhận diện đã duyệt</td><td>TTS Content Social</td><td>Content Creator</td><td>Đúng guideline thương hiệu hiện hành đang triển khai</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Chỉnh sửa nội dung theo phản hồi kiểm duyệt</td><td>TTS Content Social</td><td>Content Creator / Leader MKT</td><td>Theo góp ý đã nhận</td><td>Ghi nhận khi đăng</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Thử nghiệm định dạng nội dung mới (trend, format chưa từng làm)</td><td>Content Creator</td><td>Content Creator</td><td>Không thuộc nhóm nhạy cảm, không phát sinh chi phí</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nội dung liên quan thời sự nhạy cảm, so sánh/đề cập đối thủ</td><td>Content Creator</td><td>Leader MKT</td><td>Mọi trường hợp</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">C. KIỂM DUYỆT &amp; ĐĂNG BÀI</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Đăng bài đúng lịch, đúng guideline, không nhạy cảm</td><td>TTS Content Social</td><td>Content Creator (tự duyệt)</td><td>Đúng lịch &amp; guideline đã duyệt</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Đăng bài phát sinh ngoài lịch (bắt trend nhanh, phản hồi kịp thời)</td><td>Content Creator</td><td>Content Creator</td><td>Không thuộc nhóm nhạy cảm ở trên</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nội dung khuyến mãi/giảm giá lớn, công bố sản phẩm/dịch vụ mới</td><td>Content Creator</td><td>Leader MKT</td><td>Ảnh hưởng doanh thu hoặc định vị thương hiệu</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">D. TƯƠNG TÁC CỘNG ĐỒNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Trả lời bình luận/inbox thông thường theo kịch bản mẫu (FAQ)</td><td>TTS Content Social</td><td>TTS Content Social</td><td>Đúng kịch bản/FAQ đã ban hành</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Xử lý bình luận tiêu cực nhẹ, phàn nàn dịch vụ đơn lẻ</td><td>Content Creator</td><td>Content Creator</td><td>Theo SOP xử lý khiếu nại đã ban hành</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Khủng hoảng truyền thông (lan truyền tiêu cực, báo chí, đông người phản ứng)</td><td>Leader MKT</td><td>Leader MKT</td><td>Mọi trường hợp</td><td>Xử lý ngay + báo BLĐ tức thì</td></tr>
+
+        <tr class="grouphead"><td colspan="6">E. QUẢNG CÁO (ADS) &amp; NGÂN SÁCH</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Chạy/tối ưu ads cho bài đã duyệt, trong ngân sách &amp; mục tiêu đã cấp</td><td>Content Creator</td><td>Content Creator</td><td>≤ 300.000đ / lần chi</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Tăng ngân sách ads cho 1 bài/chiến dịch đang chạy</td><td>Content Creator</td><td>Content Creator</td><td>300.000 – 1.000.000đ / lần</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Chi ads vượt mức, đổi mục tiêu/đối tượng chiến dịch lớn</td><td>Content Creator</td><td>Leader MKT</td><td>&gt; 1.000.000đ / lần hoặc thay đổi mục tiêu chiến dịch</td><td>Trình trước</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Tổng ngân sách ads tháng vượt hạn mức đã duyệt</td><td>Leader MKT</td><td>BLĐ</td><td>Vượt ngân sách ads tháng đã duyệt (hiện ~5–20 triệu/tháng)</td><td>Trình trước, SLA phản hồi 48h</td></tr>
+
+        <tr class="grouphead"><td colspan="6">F. HỢP TÁC &amp; ĐỐI NGOẠI</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Hợp tác KOL/Influencer, minigame có quà tặng giá trị lớn</td><td>Leader MKT</td><td>Leader MKT</td><td>≤ 5.000.000đ / hợp tác, ngắn hạn</td><td>Ghi trong báo cáo tháng</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Hợp tác KOL chi phí lớn / hợp đồng dài hạn / ký với agency</td><td>Leader MKT</td><td>BLĐ</td><td>&gt; 5.000.000đ hoặc hợp đồng trên 1 tháng</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">H. TIKTOK &amp; SẢN XUẤT VIDEO</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Làm kịch bản &amp; edit video theo guideline công ty</td><td>TTS Content Social</td><td>Content Creator</td><td>Đúng guideline TikTok/thương hiệu đã ban hành</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Đi quay công trình thực tế/tham khảo</td><td>TTS Content Social</td><td>Content Creator</td><td>Đúng lịch quay &amp; nội dung đã lên kế hoạch</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Tương tác chéo, trả lời phản hồi trên các kênh TikTok có khách hàng tiềm năng</td><td>TTS Content Social</td><td>Content Creator</td><td>Theo kịch bản trả lời &amp; guideline TikTok</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nội dung TikTok thử định dạng/trend mới chưa từng làm, hoặc chủ đề nhạy cảm</td><td>Content Creator</td><td>Leader MKT</td><td>Ngoài guideline TikTok hiện hành</td><td>Trình trước</td></tr>
+      </table>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>SLA phản hồi</h3>
+        <p>Leader MKT phản hồi Vùng C trong <b>24 giờ làm việc</b> (mặc định).</p>
+        <p>Khi phải trình Ban lãnh đạo (vượt ngân sách ads tháng, hợp tác KOL lớn): <b>48 giờ làm việc</b>.</p>
+      </div>
+      <div class="card">
+        <h3>Ngoại lệ — Khủng hoảng truyền thông</h3>
+        <p>Không chờ SLA. Xử lý <b>ngay lập tức</b>, báo Leader MKT và Ban lãnh đạo <b>đồng thời</b>, không chờ quy trình trình duyệt thông thường.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="tiktok" data-cat="lichdang" id="lichdang-tiktok">
+    <div class="sechead"><span class="dot" style="background:var(--lichdang)"></span>
+      <div><h2>Lịch đăng bài — TikTok</h2><p>Tần suất &amp; khung giờ đăng cố định</p></div>
+    </div>
+    <div class="card" style="border:1px solid var(--brand);">
+      <p style="font-size:14px;font-weight:700;color:var(--brand-dark);margin:0 0 8px;">1 bài/video mỗi tuần — thứ 3 &amp; thứ 7</p>
+      <div class="flow"><span class="step">TikTok</span><span class="arrow">→</span><span class="step">17h00 – 19h00 tối</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ========================= WEBSITE ============================= -->
+  <!-- ============================================================ -->
+
+    <section data-platform="website" data-cat="noidung" id="noidung-website">
+    <div class="sechead"><span class="dot" style="background:var(--noidung)"></span>
+      <div><h2>Tiêu chuẩn nội dung &amp; SEO — Website</h2><p>Cấu trúc bài viết, tiêu đề SEO, giọng nói, ngữ pháp và những điều cần tránh</p></div>
+    </div>
+    <div class="card" style="background:#faf9f6;">
+      <p style="margin:0;font-size:13px;color:var(--sub);">Các mục checklist SEO trong tab này được gắn nhãn mức độ ưu tiên để dễ áp dụng: <span class="pri pri-must">Bắt buộc</span> làm đúng ngay từ bài đầu tiên · <span class="pri pri-should">Nên có</span> áp dụng khi đã quen việc · <span class="pri pri-nice">Nâng cao</span> tối ưu thêm khi có thời gian.</p>
+    </div>
+    <div class="card">
+      <h3>Cấu trúc tiêu chuẩn của 1 bài viết/blog</h3>
+      <div class="flow">
+        <span class="step">1. Tiêu đề (SEO)</span><span class="arrow">→</span>
+        <span class="step">2. Mở đầu</span><span class="arrow">→</span>
+        <span class="step">3. Nội dung chính</span><span class="arrow">→</span>
+        <span class="step">4. CTA + nút bấm</span><span class="arrow">→</span>
+        <span class="step">5. Footer liên hệ</span>
+      </div>
+      <table>
+        <tr><th>Phần</th><th>Nội dung chuẩn</th></tr>
+        <tr><td>1. Tiêu đề (H1/SEO)</td><td>Tên công trình/thương hiệu + Giải pháp + Lợi ích, chứa từ khóa SEO chính (xem Meta Title bên dưới)</td></tr>
+        <tr><td>2. Mở đầu</td><td>1 đoạn ngắn nêu vấn đề/insight, chứa từ khóa chính càng sớm càng tốt</td></tr>
+        <tr><td>3. Nội dung chính</td><td>Chia theo H2/H3 theo pillar, nếu là bài công trình có khối <b>THÔNG TIN DỰ ÁN</b> (Địa điểm – Diện tích – Thể loại công trình – Đơn vị thiết kế/thi công)</td></tr>
+        <tr><td>4. CTA + nút bấm</td><td>Câu CTA chuẩn kèm nút bấm rõ ràng — thành phần quan trọng nhất trên Website (tab 2. CTA &amp; Slogan)</td></tr>
+        <tr><td>5. Footer liên hệ</td><td>Hotline, địa chỉ, website, từ khóa SEO liên quan (tab 3. Hashtag/SEO)</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:13px;color:var(--sub);">Nguyên tắc: mỗi phần tách bằng heading/đoạn rõ ràng, không dùng chữ cách điệu cho H1/H2 (ảnh hưởng SEO).</p>
+    </div>
+    <div class="card">
+      <span class="label">Công thức chuẩn</span>
+      <div class="formula">
+        <b>Tên công trình / thương hiệu</b> + <b>Giải pháp giải quyết vấn đề</b> + <b>Lợi ích cho khách hàng mục tiêu</b>
+      </div>
+      <p>Số từ tối đa: <b>15 từ</b> cho tiêu đề hiển thị (H1). Ưu tiên dùng từ khóa khớp insight khách hàng.</p>
+    </div>
+    <div class="card">
+      <h3>Meta Title (thẻ tiêu đề SEO) <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <table>
+        <tr><th>Tiêu chí</th><th>Chuẩn áp dụng</th></tr>
+        <tr><td>Độ dài</td><td>65–70 ký tự (khoảng 10–12 từ)</td></tr>
+        <tr><td>Vị trí từ khóa</td><td>Ưu tiên đặt từ khóa chính ở đầu tiêu đề, nhưng vẫn đảm bảo tính hấp dẫn</td></tr>
+        <tr><td>Lặp từ khóa</td><td>Không lặp quá 2 lần</td></tr>
+        <tr><td>Tính độc nhất</td><td>Duy nhất, không trùng lặp với tiêu đề khác trên website</td></tr>
+        <tr><td>Nội dung</td><td>Không phóng đại/giật tít; nên bao quát bài viết, có thể chứa số/tính từ/ký tự đặc biệt mang tính xu hướng</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:13px;color:var(--sub);">Lưu ý: Meta Title (hiện trên Google) và tiêu đề H1 hiển thị trên trang có thể khác nhau — H1 ưu tiên hấp dẫn người đọc, Meta Title ưu tiên từ khóa lên đầu.</p>
+    </div>
+    <div class="card">
+      <h3>Sapo (đoạn mở đầu) <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Từ khóa chính xuất hiện trong 150 ký tự đầu tiên (khoảng 1,5 dòng đầu)</li>
+        <li>Trả lời đúng search intent: tổng hợp nội dung bài hoặc nêu lý do nên đọc tiếp</li>
+        <li>Trả lời được 3 câu hỏi: Viết cho ai? Giúp họ như thế nào? Mang lại lợi ích gì?</li>
+        <li>Nên in đậm hoặc in nghiêng đoạn Sapo để tạo điểm nhấn thị giác</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Meta Description <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <table>
+        <tr><th>Tiêu chí</th><th>Chuẩn áp dụng</th></tr>
+        <tr><td>Độ dài</td><td>150–160 ký tự</td></tr>
+        <tr><td>Từ khóa chính</td><td>Không lặp quá 3 lần; nên in đậm từ khóa chính xuất hiện đầu tiên</td></tr>
+        <tr><td>Biến thể từ khóa</td><td>Nên bao gồm ít nhất 1 biến thể của từ khóa chính</td></tr>
+        <tr><td>Từ khóa thương hiệu</td><td>Có chứa tên thương hiệu (VD: "DRM Design")</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Phân định các đoạn nội dung</h3>
+      <p>Bài viết website vẫn cần tách rõ các phần <b>"Tiêu đề"</b> – <b>"Mô tả nội dung, thiết kế"</b> – <b>"CTA"</b> – <b>"THÔNG TIN DỰ ÁN"</b>, trình bày bằng heading (H2/H3) và xuống đoạn rõ ràng thay vì xuống dòng đơn thuần như trên mạng xã hội.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Pillar Công trình <span class="badge" style="color:var(--sub)">thiết kế · thi công · hiện trạng</span></h3>
+        <p>Font thường – in hoa (không cách điệu) cho H1/H2 bài viết</p>
+      </div>
+      <div class="card">
+        <h3>Pillar còn lại <span class="badge" style="color:var(--sub)">kiến thức · brand · sự kiện</span></h3>
+        <p>Font in đậm – có chân – đơn giản</p>
+        <p style="font-size:12.5px;color:var(--sub);margin-top:6px;">Lưu ý: Chữ cách điệu (unicode) chỉ nên dùng cho mạng xã hội — <b>không dùng</b> cho H1/H2 trên website vì ảnh hưởng SEO và khả năng đọc của công cụ tìm kiếm.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Từ khóa hay dùng cho tiêu đề (khớp insight)</h3>
+      <div class="keyword-grid">
+        <div class="kw"><b>Bí quyết</b> — gợi mở tò mò, hướng dẫn</div>
+        <div class="kw"><b>Chiến lược</b> — nghe bài bản, chuyên nghiệp</div>
+        <div class="kw"><b>Đúng cách</b> — giảm nỗi lo "làm sai"</div>
+        <div class="kw"><b>Khác biệt</b> — đánh vào mong muốn nổi bật</div>
+        <div class="kw"><b>Tối ưu</b> — giải quyết lo lắng chi phí</div>
+        <div class="kw"><b>Đơn giản</b> — giảm cảm giác phức tạp</div>
+        <div class="kw"><b>Trải nghiệm</b> — gắn cảm xúc khách quay lại</div>
+        <div class="kw"><b>Đúng chuẩn</b> — mang tính chắc chắn, yên tâm</div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <h3>E-E-A-T &amp; độ tin cậy nội dung <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Ưu tiên ngôi thứ nhất "tôi", "chúng tôi" khi phù hợp; chia sẻ trải nghiệm thực tế, ý kiến cá nhân thay vì chỉ nêu thông tin khách quan (VD: "Trong quá trình khảo sát, chúng tôi nhận thấy..." thay vì "Khảo sát cho thấy...")</li>
+        <li>Tiêu đề không giật tít, không phóng đại; nội dung không cam kết những điều không thể đảm bảo tuyệt đối (VD: tránh "cam kết đúng tiến độ 100%")</li>
+        <li>Không dùng banner điều hướng dày đặc về sản phẩm/dịch vụ; không dùng internal link đánh lừa người đọc sang trang bán hàng</li>
+        <li>Có hồ sơ tác giả thật (không dùng bút danh/tác giả ảo) và gắn Schema tác giả cho mọi bài viết</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Yêu cầu cơ bản &amp; trình bày <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <div class="grid2">
+        <div>
+          <p style="font-weight:600;margin-bottom:4px;">Nội dung</p>
+          <ul>
+            <li>Tỷ lệ unique 95–100%, không lỗi chính tả, diễn đạt logic</li>
+            <li>Câu ngắn: 200–300 ký tự/câu (khoảng 1,5–2 dòng)</li>
+            <li>Đoạn ngắn: 2–3 câu, không quá 3 dòng</li>
+            <li>Câu đầu đoạn khái quát nội dung cả đoạn; có câu kết luận cho mỗi heading</li>
+            <li>Mật độ từ khóa 1–3%, chèn tự nhiên — tránh nhồi nhét gây lủng củng</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:4px;">Trình bày</p>
+          <ul>
+            <li>Căn lề 2 bên, cỡ chữ 11, giãn dòng 1,5, ưu tiên font không chân</li>
+            <li>Bôi đậm ý/từ cần khách hàng ghi nhớ (không chỉ riêng từ khóa)</li>
+            <li>Đặt đúng định dạng thẻ Heading (H1/H2/H3) cho tiêu đề và các mục</li>
+            <li>Ưu tiên ảnh/video/infographic độ nét cao, chú thích in nghiêng, căn giữa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Giọng nói &amp; tông điệu</h3>
+      <p><span class="hl">Chuyên nghiệp – thân thiện – sáng tạo.</span> Trên website ưu tiên sự chuyên nghiệp, rõ ràng và mạch lạc hơn (nội dung dài, khách đọc kỹ để ra quyết định).</p>
+    </div>
+    <div class="card">
+      <h3>Quy chuẩn ngôn ngữ chung</h3>
+      <table>
+        <tr><th>Yếu tố</th><th>Chuẩn áp dụng</th><th>Ví dụ cụ thể</th></tr>
+        <tr><td>Ngôi xưng hô</td><td>Sử dụng biệt danh công ty, ngôi thứ nhất để truyền đạt</td><td>"DRM Design", "chúng tôi"</td></tr>
+        <tr><td>Icon</td><td>Hạn chế tối đa trên website — chỉ dùng trong bảng/checklist minh họa</td><td>🗒 Checklist quy trình thi công</td></tr>
+        <tr><td>Đơn vị tiền tệ</td><td>Nhất quán sử dụng "VNĐ" cho mọi nội dung</td><td>10.000 VNĐ</td></tr>
+        <tr><td>Thời gian</td><td>Sử dụng định dạng 24 giờ và ngày/tháng/năm</td><td>14:00, 23/05/2024</td></tr>
+        <tr><td>Địa điểm</td><td>Viết đầy đủ quận và thành phố hoặc thành phố</td><td>"Liên Chiểu, Thành phố Đà Nẵng"</td></tr>
+        <tr><td>Dấu câu</td><td>Đặt dấu câu đúng quy cách</td><td>Đúng: "Xin chào, tôi là..."</td></tr>
+        <tr><td>Thông tin dự án</td><td>Địa điểm – Diện tích – Thể loại công trình – Đơn vị thiết kế và thi công</td><td>THÔNG TIN DỰ ÁN<br>- Loại hình công trình: Cafe<br>- Diện tích: 80 m²<br>- Địa điểm: Thành phố Đà Nẵng<br>- Thiết kế và thi công hoàn thiện: DRM Design</td></tr>
+        <tr><td>Thể loại công trình</td><td>Dùng từ ngữ hay sử dụng nhất của khách hàng mục tiêu, viết in hoa</td><td>- CAFE<br>- CỬA HÀNG (SHOP)<br>- SPA<br>- NHÀ HÀNG (RESTAURANT)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Nên dùng — Không nên dùng</h3>
+      <table>
+        <tr><th>Tình huống</th><th>Nên dùng</th><th>Không nên dùng</th></tr>
+        <tr><td>Chào hỏi khách hàng (form liên hệ)</td><td class="ok">"DRM Design xin chào", "Xin chào anh/chị"</td><td class="no">"Ế", "Hi"</td></tr>
+        <tr><td>Kết thúc email</td><td class="ok">"Trân trọng", "Xin cảm ơn"</td><td class="no">"Dye", "Cya"</td></tr>
+        <tr><td>Thông báo lỗi</td><td class="ok">"Xin lỗi anh/chị, hiện tại đang có 1 số vấn đề..., DRM Design sẽ liên hệ lại sau"</td><td class="no">"Hỏng rồi", "Oops"</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);"><b style="color:var(--ink);">Lưu ý:</b> Không dùng <b>"nhé"</b>, <b>"nha"</b> trong nội dung chính thức.</p>
+    </div>
+    <div class="card">
+      <h3>Giới hạn số từ theo hạng mục (giao diện Website)</h3>
+      <table>
+        <tr><th>Không gian</th><th>Giới hạn</th><th>Ví dụ cụ thể</th></tr>
+        <tr><td>Pop-up</td><td>Không quá 50 từ</td><td>"Đăng ký ngay để nhận ưu đãi đặc biệt!"</td></tr>
+        <tr><td>Empty state</td><td>Không quá 20 từ</td><td>"Chưa có nội dung nào."</td></tr>
+        <tr><td>404 Page</td><td>Không quá 30 từ</td><td>"Trang không tồn tại. Vui lòng quay lại trang chủ."</td></tr>
+        <tr><td>Push notification</td><td>Không quá 15 từ</td><td>"Bạn có tin nhắn mới."</td></tr>
+        <tr><td>Email Subject</td><td>Không quá 50 ký tự</td><td>"Khuyến mãi đặc biệt cho tháng này!"</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Nút bấm (CTA): dùng danh từ / mệnh lệnh ngắn.</p>
+    </div>
+    <div class="card">
+      <h3>Yếu tố dễ đọc (Readability) <span class="pri pri-should">Nên có</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Đầu tư phần lớn thời gian &amp; công sức cho <b>tiêu đề</b> và <b>đoạn mở đầu (Sapo)</b> — đây là phần quyết định người đọc có ở lại hay không</li>
+        <li>Viết tiêu đề phụ (H2/H3) hấp dẫn, nêu rõ lợi ích thay vì chỉ mô tả chung chung</li>
+        <li>Dùng Blockquote để thu hút thị giác vào ý quan trọng</li>
+        <li>Đưa thông tin quan trọng lên đầu bài để tiết kiệm thời gian người đọc</li>
+        <li>Mô hình hóa thông tin phức tạp thành bảng/sơ đồ thay vì đoạn văn dài</li>
+      </ul>
+    </div>
+  </section>
+
+  <section data-platform="website" data-cat="cta" id="cta-website">
+    <div class="sechead"><span class="dot" style="background:var(--cta)"></span>
+      <div><h2>CTA &amp; Slogan — Website</h2><p>Nút bấm, câu kêu gọi hành động và slogan hiển thị trên website</p></div>
+    </div>
+    <div class="card">
+      <span class="label">Mẫu CTA chuẩn — áp dụng cho mọi bài viết</span>
+      <div class="quote" style="border-color:var(--cta);">
+        "Bạn đang tìm kiếm đơn vị thiết kế và thi công <span style="color:var(--brand-dark);font-weight:700;">[quán cafe / nhà hàng / shop / spa]</span> + <span style="color:var(--brand-dark);font-weight:700;">[giải pháp/nỗi đau khách hàng đang có ở phần tiêu đề]</span>. Hãy liên hệ DRM Design để được hỗ trợ tư vấn."
+      </div>
+      <table style="margin-top:12px;">
+        <tr><th>Phần cần điền</th><th>Lấy nội dung từ đâu?</th></tr>
+        <tr><td><span style="color:var(--brand-dark);font-weight:700;">[quán cafe / nhà hàng / shop / spa]</span></td><td>Đúng thể loại công trình đang trình bày trong bài — chỉ chọn 1 trong 4 loại</td></tr>
+        <tr><td><span style="color:var(--brand-dark);font-weight:700;">[giải pháp/nỗi đau...]</span></td><td>Lấy đúng phần "giải pháp giải quyết vấn đề" đã viết trong tiêu đề bài (xem Meta Title/tiêu đề ở tab 1) — diễn đạt lại ngắn gọn, không cần chép y nguyên</td></tr>
+      </table>
+      <div class="example" style="margin-top:12px;">
+        <b>Ví dụ minh họa — áp dụng công thức vào 1 bài thật:</b>
+        <p style="margin:8px 0 4px;">Tiêu đề bài viết: <i>"KHÔNG GIAN CAFE INDUSTRIAL - PHONG CÁCH TỐI GIẢN, CÔNG NĂNG TỐI ĐA CHO VIỆC HỌC TẬP VÀ LÀM VIỆC"</i></p>
+        <p style="margin:4px 0 0;">→ CTA tương ứng: <i>"Bạn đang tìm kiếm đơn vị thiết kế và thi công <b style="color:var(--brand-dark);">quán cafe</b> + <b style="color:var(--brand-dark);">phong cách tối giản, công năng tối đa cho việc học tập và làm việc</b>? Hãy liên hệ DRM Design để được hỗ trợ tư vấn."</i></p>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Phần <span style="color:var(--brand-dark);font-weight:600;">in đỏ</span> là 2 chỗ duy nhất cần thay đổi theo từng bài — phần còn lại giữ nguyên y hệt mọi lúc.</p>
+    </div>
+    <div class="card">
+      <h3>Chuẩn viết nút bấm (button / CTA ngắn)</h3>
+      <p>Đây là chuẩn <b>quan trọng nhất</b> đối với Website vì nút bấm là thành phần giao diện thật. Dùng danh từ hoặc cụm mệnh lệnh ngắn, rõ ràng.</p>
+      <div class="example">Ví dụ: <b>"Đăng ký ngay"</b>, <b>"Liên hệ ngay"</b>, <b>"Điền thông tin"</b>, <b>"Xem dự án"</b></div>
+    </div>
+    <p style="font-size:12.5px;color:var(--sub);">Lưu ý: Chuẩn "text CTA trên video" (video quảng cáo / video AI) chỉ áp dụng khi website có nhúng video — nếu không, phần này bỏ qua.</p>
+    <div class="card">
+      <h3>CTA dẫn link nội bộ/ngoài (Internal &amp; External link) <span class="pri pri-should">Nên có</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <p>Khi dẫn link sang bài viết khác hoặc nguồn tham khảo, nên có cụm từ kêu gọi hành động rõ ràng thay vì chỉ để link trơn.</p>
+      <div class="example">Ví dụ: <b>"Xem thêm"</b>, <b>"Hãy xem thêm"</b>, <b>"Tham khảo thêm tại đây"</b></div>
+    </div>
+    <div class="card">
+      <h3>Đo lường hiệu quả CTA</h3>
+      <p>Theo dõi tỷ lệ click vào từng CTA chuyển đổi trên mỗi bài viết (gọi điện, điền form, bình luận...) để tối ưu vị trí và cách viết CTA theo thời gian.</p>
+    </div>
+    <div class="card">
+      <span class="label">Slogan chuẩn thương hiệu</span>
+      <div class="quote">"DRM Design — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả"</div>
+    </div>
+    <div class="card">
+      <h3>Cách thể hiện trên Website</h3>
+      <p>Hiển thị dạng <b>text tĩnh</b> tại banner đầu trang chủ (hero section) và/hoặc footer, đi kèm logo <b>"DRM Design"</b>.</p>
+    </div>
+    <div class="pending-card">
+      <h3>⚠️ Đang chờ Leader MKT xác nhận</h3>
+      <ol>
+        <li><b>Bố cục Slogan</b> — guideline gốc chưa quy định vị trí cụ thể cho website. Đề xuất: đặt slogan ngay dưới logo ở hero banner, cỡ chữ nhỏ hơn tiêu đề chính, không lấn vào vùng nút CTA.</li>
+      </ol>
+    </div>
+  </section>
+
+    <section data-platform="website" data-cat="hashtag" id="hashtag-website">
+    <div class="sechead"><span class="dot" style="background:var(--hashtag)"></span>
+      <div><h2>Hashtag / Từ khóa SEO — Website</h2><p>Website không dùng hashtag trong nội dung — thay bằng từ khóa SEO</p></div>
+    </div>
+    <div class="card">
+      <span class="label">Cấu trúc từ khóa SEO</span>
+      <div class="formula">
+        <b>Từ khóa chính</b> (xuất hiện trong H1, Sapo, URL) + <b>từ khóa phụ</b> (rải đều trong bài, mật độ tự nhiên)
+      </div>
+      <p style="font-size:13px;color:var(--sub);">Mật độ từ khóa: <b>1–3%</b> tổng số từ trong bài (VD: bài 1.000 từ, mật độ 1% ≈ 10 lần xuất hiện từ khóa chính). Tránh nhồi nhét từ khóa (keyword stuffing) làm bài viết lủng củng.</p>
+    </div>
+    <div class="card">
+      <h3>URL bài viết (Slug) <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Chứa từ khóa chính</li>
+        <li>Càng ngắn gọn, tinh giản càng tốt — có thể chỉ cần đúng từ khóa chính</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Internal Link (liên kết nội bộ) <span class="pri pri-should">Nên có</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Link về bài viết khác liên quan, cùng chủ đề — xây dựng dần khi đã có đủ số lượng bài xoay quanh chủ đề, tránh để bài viết "mồ côi" (không có bài nào trỏ về)</li>
+        <li>Link về trang chủ và về trang danh mục liên quan</li>
+        <li>Anchor text nên chứa từ khóa chính hoặc từ khóa liên quan</li>
+        <li>Ưu tiên đặt internal link tại các bài đã có traffic tốt, dẫn sang cả bài cùng chủ đề và khác chủ đề</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>External Link (liên kết ngoài) <span class="pri pri-should">Nên có</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>1–3 link đến các trang uy tín cùng chủ đề (báo lớn, website chuyên ngành, Wikipedia)</li>
+        <li>Cài đặt mở link trong tab mới</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Hình ảnh chuẩn SEO <span class="pri pri-should">Nên có</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Đổi tên file ảnh trước khi tải lên: không dấu, chứa từ khóa</li>
+        <li>Có Alt text mô tả ảnh, chèn từ khóa cho một vài ảnh (không phải tất cả)</li>
+        <li>Mỗi Heading 2 nên có ít nhất 1 ảnh minh họa phù hợp ngữ cảnh</li>
+        <li>Kích thước: chiều ngang 600–1080px, chiều cao 350–600px</li>
+        <li>Dung lượng tối ưu: 150–200kb; định dạng JPG/JPEG</li>
+        <li>Có ảnh đại diện (featured image) cho mỗi bài viết</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Schema nâng cao (khuyến nghị) <span class="pri pri-nice">Nâng cao</span></h3>
+      <p>Thêm Schema Tác giả cho mọi bài viết. Có thể bổ sung thêm Schema Rating, FAQs, How-to... để tăng diện tích hiển thị trên trang kết quả tìm kiếm Google khi phù hợp.</p>
+    </div>
+    <div class="card">
+      <h3>Thông tin đính kèm cuối bài</h3>
+      <div class="contact">
+        <p><b>DRM Design</b> — Đồng hành kiến tạo không gian F&amp;B khác biệt và hiệu quả</p>
+        <p>Hotline / Zalo: <b>0966 776 375</b></p>
+        <p>Văn phòng đại diện: <b>07 Mỹ An 9, Ngũ Hành Sơn, TP Đà Nẵng</b></p>
+        <p>Website: <b>drmdesign.vn</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="website" data-cat="dangnd" id="dangnd-website">
+    <div class="sechead"><span class="dot" style="background:var(--dạng)"></span>
+      <div><h2>Các dạng nội dung — Website</h2><p>4 nhóm chủ đề × 5 góc nội dung, định dạng bài viết dài / blog SEO</p></div>
+    </div>
+    <div class="card">
+      <h3>Chuẩn cấu trúc Heading (H2/H3) <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Tối thiểu 3 heading H2 trong 1 bài; đưa heading quan trọng lên đầu, các phần liên kết mạch lạc với nhau</li>
+        <li>Từ khóa chính nên xuất hiện trong thẻ H2 đầu tiên; H2 làm rõ nghĩa cho H1, H3 làm rõ nghĩa cho H2 (H3 chỉ đi theo H2 tương ứng)</li>
+        <li>Viết heading thú vị, hấp dẫn, chỉ ra lợi ích — tránh heading dạng câu hỏi chung chung hoặc quá dài</li>
+        <li>Mỗi H2 có ít nhất 1 ảnh minh họa; 2 heading H3 liên tiếp cần có ít nhất 1 ảnh</li>
+        <li>Nên có nguồn tham khảo cho từng phần; lên cấu trúc bài khác biệt so với đối thủ cùng từ khóa</li>
+      </ul>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">1. Thiết kế &amp; AI thiết kế</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Bài blog SEO: "5 phong cách thiết kế quán cafe phổ biến năm 2025"</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Bài viết dài kèm ảnh: hành trình từ sketch tay → 3D → công trình thực tế</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Bài so sánh chuyên sâu: "Minimal vs Tropical — phong cách nào cho quán &lt;50m²?"</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Bài viết cảm xúc kèm gallery ảnh dự án</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Trang testimonial: tổng hợp đánh giá khách hàng</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">2. Công trình thi công</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Bài blog: "Checklist 7 bước thi công quán cafe trong 30 ngày"</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Case study chi tiết: quá trình thi công từ khung → bàn giao</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Bài phân tích: "Gỗ tự nhiên vs gỗ công nghiệp — chọn sao cho hợp chi phí?"</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Bài viết giá trị thương hiệu, kèm hình ảnh đội ngũ thi công</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Trang case study có phỏng vấn chủ đầu tư</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">3. Kinh doanh &amp; vận hành F&amp;B</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Bài blog chuyên sâu: "3 layout giúp tăng 20% doanh thu cho quán nhỏ"</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Bài viết dài: chủ quán trẻ mở quán thành công nhờ thiết kế chuẩn</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Case study số liệu: "200tr vs 500tr — khác biệt trong quán cafe là gì?"</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Bài viết truyền cảm hứng kinh doanh F&amp;B</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Case study: "Doanh thu tăng 30% sau cải tạo" (có số liệu, biểu đồ)</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">4. Câu chuyện thương hiệu &amp; dự án</div>
+      <div class="angle"><b>Giáo dục</b><div class="ex">Trang "Về chúng tôi": vì sao DRM Design chọn tập trung ngành F&amp;B</div></div>
+      <div class="angle"><b>Storytelling</b><div class="ex">Bài viết hành trình làm dự án cùng chủ đầu tư đam mê cà phê</div></div>
+      <div class="angle"><b>So sánh / đối chiếu</b><div class="ex">Trang Trước – Sau: gallery ảnh từ nhà cũ thành quán check-in hot</div></div>
+      <div class="angle"><b>Cảm xúc / truyền cảm hứng</b><div class="ex">Bài viết: "Mỗi công trình là niềm tự hào của đội ngũ"</div></div>
+      <div class="angle"><b>Khách hàng nói gì</b><div class="ex">Trang phỏng vấn khách hàng dạng bài viết dài</div></div>
+    </div>
+  </section>
+
+  <section data-platform="website" data-cat="baimau" id="baimau-website">
+    <div class="sechead"><span class="dot" style="background:var(--baimau)"></span>
+      <div><h2>Bài mẫu hoàn chỉnh — Website</h2><p>Khung viết bài chuẩn cho bài blog / SEO</p></div>
+    </div>
+    <div class="card">
+      <h3>Khung viết bài chuẩn (điền trước khi viết)</h3>
+      <table>
+        <tr><th>Hạng mục</th><th>Nội dung cần điền</th></tr>
+        <tr><td>Idea</td><td>Ý tưởng chính của bài, 1 câu</td></tr>
+        <tr><td>Từ khóa SEO chính</td><td>Từ khóa mục tiêu cần lên top Google</td></tr>
+        <tr><td>Vấn đề / Nỗi đau</td><td>Khách hàng đang gặp khó khăn gì</td></tr>
+        <tr><td>Insight (mong muốn thầm kín)</td><td>Điều khách thật sự mong muốn nhưng ít khi nói ra</td></tr>
+        <tr><td>Công thức content dùng</td><td>AIDA – PAS – hoặc 4P (Picture, Promise, Prove, Push)</td></tr>
+        <tr><td>CTA</td><td>Câu kêu gọi hành động + nút bấm (xem chuẩn ở tab 3)</td></tr>
+        <tr><td>Số lần chỉnh sửa</td><td>Ghi nhận số lần Leader kiểm duyệt trước khi đăng</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Chuẩn thân bài (Body Text) <span class="pri pri-must">Bắt buộc</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Đoạn văn đầu tiên sau H2 đầu tiên: trả lời cho lý do của từ khóa, dài không quá 300 ký tự (tăng cơ hội lên Featured Snippet)</li>
+        <li>Mỗi đoạn tối thiểu 400 từ; toàn bài tối thiểu 5 đoạn văn</li>
+        <li>Có bôi đậm/in nghiêng từ khóa chính trong đoạn văn (1–2 lần)</li>
+        <li>Có ít nhất 1 hình ảnh trong mỗi đoạn, hoặc tối thiểu 3 hình ảnh/1.000 từ</li>
+        <li>Anchor text của internal link nên là từ khóa hoặc tiêu đề bài được link tới, kèm câu kêu gọi hành động ("Xem thêm...")</li>
+        <li>Thêm mục Câu hỏi thường gặp (FAQ) nếu có câu hỏi liên quan có thể trả lời ngắn gọn — giúp tăng cơ hội hiển thị ở mục "Mọi người cũng hỏi" trên Google</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Chuẩn kết bài <span class="pri pri-should">Nên có</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Dài tối đa 4 dòng</li>
+        <li>Bôi đậm từ khóa chính; từ khóa chính nên xuất hiện lại ở 150 ký tự cuối cùng</li>
+        <li>Tóm tắt, đánh giá lại toàn bộ nội dung bài viết</li>
+        <li>Thêm lời kêu gọi hành động (CTA) nếu phù hợp</li>
+      </ul>
+    </div>
+    <div class="pending-card">
+      <h3>⚠️ Đang chờ Leader MKT xác nhận</h3>
+      <ol>
+        <li>Guideline gốc chưa cung cấp bài viết website thực tế để làm ví dụ minh họa. Có thể tham khảo tạm cấu trúc bài mẫu Fanpage (E.mori Coffee) ở tab Fanpage → 7. Bài mẫu, rồi mở rộng thêm phần SEO theo checklist trên khi viết cho website.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-platform="website" data-cat="duyet" id="duyet-website">
+    <div class="sechead"><span class="dot" style="background:var(--duyet)"></span>
+      <div><h2>Quy trình duyệt bài — Website</h2><p>Áp dụng chung theo Bảng phân quyền Marketing, không đổi theo nền tảng</p></div>
+    </div>
+    <div class="card">
+      <h3>3 vùng quyết định</h3>
+      <div class="grid3">
+        <div class="example" style="border-left-color:#2f5c0e;background:#e3f1d9;"><span class="vung-badge vung-a">A</span><br><br>Tự quyết, không cần báo trước — chỉ ghi nhận trong báo cáo tuần</div>
+        <div class="example" style="border-left-color:#8a5a00;background:#fdecc8;"><span class="vung-badge vung-b">B</span><br><br>Tự quyết, nhưng phải báo cáo trong 24 giờ</div>
+        <div class="example" style="border-left-color:var(--brand-dark);background:#fbdedb;"><span class="vung-badge vung-c">C</span><br><br>Phải xin ý kiến Leader MKT (hoặc BLĐ) trước khi làm</div>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--sub);">Nguyên tắc: quyết định theo guideline có sẵn, không theo cảm tính. Gặp nội dung nhạy cảm, vượt ngưỡng ngân sách hoặc đổi định hướng → tự động chuyển thành Vùng C. Cột "Người thực hiện" là người trực tiếp làm; cột "Người quyết định" là người chịu trách nhiệm duyệt cuối cùng — hai vai trò này có thể khác nhau.</p>
+    </div>
+    <div class="card">
+      <h3>Bảng phân quyền chi tiết theo nhóm công việc</h3>
+      <table>
+        <tr><th>Vùng</th><th>Công việc</th><th>Người thực hiện</th><th>Người quyết định</th><th>Ngưỡng / Điều kiện</th><th>Cơ chế kiểm soát</th></tr>
+        <tr class="grouphead"><td colspan="6">A. LẬP KẾ HOẠCH NỘI DUNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Xây dựng Calendar (idea, mô tả nội dung, lịch đăng bài) tuần/tháng theo chủ đề &amp; định hướng quý đã duyệt</td><td>Content Creator (Social)</td><td>Content Creator</td><td>Đúng mục tiêu, chiến lược quý Leader MKT đã duyệt — đúng tệp khách hàng, thị trường, thông điệp định vị</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Đề xuất chủ đề, nội dung/chiến dịch mới, thay đổi định hướng nội dung tháng/quý</td><td>Content Creator</td><td>Leader MKT</td><td>Thay đổi ngoài chiến lược quý đã duyệt</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">B. SẢN XUẤT NỘI DUNG</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Viết caption (tiêu đề), CTA, thiết kế hình ảnh/video theo brief &amp; bộ nhận diện đã duyệt</td><td>TTS Content Social</td><td>Content Creator</td><td>Đúng guideline thương hiệu hiện hành đang triển khai</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Chỉnh sửa nội dung theo phản hồi kiểm duyệt</td><td>TTS Content Social</td><td>Content Creator / Leader MKT</td><td>Theo góp ý đã nhận</td><td>Ghi nhận khi đăng</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Thử nghiệm định dạng nội dung mới (trend, format chưa từng làm)</td><td>Content Creator</td><td>Content Creator</td><td>Không thuộc nhóm nhạy cảm, không phát sinh chi phí</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nội dung liên quan thời sự nhạy cảm, so sánh/đề cập đối thủ</td><td>Content Creator</td><td>Leader MKT</td><td>Mọi trường hợp</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">C. KIỂM DUYỆT &amp; ĐĂNG BÀI</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Đăng bài đúng lịch, đúng guideline, không nhạy cảm</td><td>TTS Content Social</td><td>Content Creator (tự duyệt)</td><td>Đúng lịch &amp; guideline đã duyệt</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Đăng bài phát sinh ngoài lịch (bắt trend nhanh, phản hồi kịp thời)</td><td>Content Creator</td><td>Content Creator</td><td>Không thuộc nhóm nhạy cảm ở trên</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Nội dung khuyến mãi/giảm giá lớn, công bố sản phẩm/dịch vụ mới</td><td>Content Creator</td><td>Leader MKT</td><td>Ảnh hưởng doanh thu hoặc định vị thương hiệu</td><td>Trình trước</td></tr>
+
+        <tr class="grouphead"><td colspan="6">E. QUẢNG CÁO (ADS) &amp; NGÂN SÁCH</td></tr>
+        <tr class="row-a"><td><span class="vung-badge vung-a">A</span></td><td>Chạy/tối ưu ads cho bài đã duyệt, trong ngân sách &amp; mục tiêu đã cấp</td><td>Content Creator</td><td>Content Creator</td><td>≤ 300.000đ / lần chi</td><td>Ghi trong báo cáo tuần</td></tr>
+        <tr class="row-b"><td><span class="vung-badge vung-b">B</span></td><td>Tăng ngân sách ads cho 1 bài/chiến dịch đang chạy</td><td>Content Creator</td><td>Content Creator</td><td>300.000 – 1.000.000đ / lần</td><td>Báo cáo trong 24h</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Chi ads vượt mức, đổi mục tiêu/đối tượng chiến dịch lớn</td><td>Content Creator</td><td>Leader MKT</td><td>&gt; 1.000.000đ / lần hoặc thay đổi mục tiêu chiến dịch</td><td>Trình trước</td></tr>
+        <tr class="row-c"><td><span class="vung-badge vung-c">C</span></td><td>Tổng ngân sách ads tháng vượt hạn mức đã duyệt</td><td>Leader MKT</td><td>BLĐ</td><td>Vượt ngân sách ads tháng đã duyệt (hiện ~5–20 triệu/tháng)</td><td>Trình trước, SLA phản hồi 48h</td></tr>
+
+      </table>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>SLA phản hồi</h3>
+        <p>Leader MKT phản hồi Vùng C trong <b>24 giờ làm việc</b> (mặc định).</p>
+        <p>Khi phải trình Ban lãnh đạo (vượt ngân sách ads tháng): <b>48 giờ làm việc</b>.</p>
+      </div>
+      <div class="card">
+        <h3>Ngoại lệ — Khủng hoảng truyền thông</h3>
+        <p>Không chờ SLA. Xử lý <b>ngay lập tức</b>, báo Leader MKT và Ban lãnh đạo <b>đồng thời</b>, không chờ quy trình trình duyệt thông thường.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="website" data-cat="lichdang" id="lichdang-website">
+    <div class="sechead"><span class="dot" style="background:var(--lichdang)"></span>
+      <div><h2>Lịch đăng bài — Website</h2><p>Tần suất đăng bài blog / SEO</p></div>
+    </div>
+    <div class="card" style="border:1px solid var(--brand);">
+      <p style="font-size:14px;font-weight:700;color:var(--brand-dark);margin:0 0 8px;">2 bài viết SEO/blog mỗi tháng — tuần 1 &amp; tuần 3</p>
+      <div class="flow"><span class="step">Website</span><span class="arrow">→</span><span class="step">Thứ 2 đầu tuần, 8h00 – 10h00 sáng</span></div>
+      <div class="pending-card" style="margin-top:10px;">
+        <h3>⚠️ Đang chờ Leader MKT xác nhận</h3>
+        <ol>
+          <li>Guideline gốc chưa quy định lịch đăng cho Website — tần suất/khung giờ trên là đề xuất dựa theo nhịp độ hợp lý cho content SEO (đủ thời gian đầu tư chất lượng mỗi bài) và giờ đăng đầu tuần để công cụ tìm kiếm index sớm trong tuần. Cần Leader MKT xác nhận và ban hành chính thức trước khi áp dụng.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Việc cần làm ngay sau khi đăng bài <span class="pri pri-should">Nên có</span> <span class="badge" style="color:var(--sub)">chuẩn SEO 2026</span></h3>
+      <ul>
+        <li>Chia sẻ bài viết trên hệ thống Social Network (Fanpage, TikTok...) đang quản lý</li>
+        <li>Gắn internal link từ các bài có traffic tốt (cùng chủ đề và khác chủ đề) trỏ về bài mới</li>
+        <li>Cân nhắc gắn bài lên trang chủ hoặc vị trí có nhiều traffic để tăng lượt tiếp cận ban đầu</li>
+        <li>Có thể chạy quảng cáo Google Ads/Facebook Ads hỗ trợ nếu là bài viết chiến lược</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Tài liệu tổng hợp rút gọn từ Brand Guideline DRM Design 2025 — dùng nội bộ để nhân sự tra cứu nhanh khi lên nội dung. Các mục có nhãn ⚠️ là đề xuất bổ sung, cần Leader MKT xác nhận trước khi áp dụng chính thức.
+  </footer>
+</div>
+<script>
+  const platformButtons = document.querySelectorAll('#platformnav button');
+  const catNavs = document.querySelectorAll('.catnav');
+  const sections = document.querySelectorAll('section[data-platform]');
+  let currentPlatform = 'start';
+  let currentCat = 'start';
+
+  function render(){
+    sections.forEach(s => {
+      s.classList.toggle('active', s.dataset.platform === currentPlatform && s.dataset.cat === currentCat);
+    });
+  }
+
+  function showCatNavFor(platform){
+    catNavs.forEach(nav => nav.classList.toggle('active', nav.id === 'catnav-' + platform));
+  }
+
+  function bindCatNav(nav){
+    nav.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        nav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCat = btn.dataset.cat;
+        render();
+      });
+    });
+  }
+  catNavs.forEach(bindCatNav);
+
+  platformButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      platformButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentPlatform = btn.dataset.platform;
+      if(currentPlatform === 'start'){
+        currentCat = 'start';
+        showCatNavFor('__none__');
+      } else {
+        currentCat = 'noidung';
+        showCatNavFor(currentPlatform);
+        const activeNav = document.getElementById('catnav-' + currentPlatform);
+        activeNav.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.cat === 'noidung'));
+      }
+      render();
+    });
+  });
+
+  showCatNavFor('__none__');
+  render();
+</script>
+</body>
+</html>
